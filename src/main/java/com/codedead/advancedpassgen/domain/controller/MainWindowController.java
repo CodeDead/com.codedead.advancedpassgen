@@ -1,12 +1,26 @@
 package com.codedead.advancedpassgen.domain.controller;
 
+import com.codedead.advancedpassgen.domain.controls.NumberTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public final class MainWindowController {
 
+    @FXML
+    private NumberTextField numAmount;
+    @FXML
+    private NumberTextField numLength;
+    @FXML
+    private Tab tabList;
+    @FXML
+    private Tab tabAdvisor;
+    @FXML
+    private Tab tabAdvanced;
+    @FXML
+    private Tab tabOptions;
     @FXML
     private MenuItem MniHelp;
     @FXML
@@ -31,6 +45,7 @@ public final class MainWindowController {
      */
     @FXML
     public void initialize() {
+        // Menu items
         MniExport.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/export.png"))));
         MniExit.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/remove.png"))));
         MniSettings.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/settings.png"))));
@@ -40,6 +55,11 @@ public final class MainWindowController {
         MniHomepage.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/home.png"))));
         MniUpdate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/update.png"))));
         MniHelp.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/help.png"))));
+        // Tab items
+        tabOptions.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/home.png"))));
+        tabAdvanced.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/settings.png"))));
+        tabList.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/list.png"))));
+        tabAdvisor.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/advisor.png"))));
     }
 
     /**

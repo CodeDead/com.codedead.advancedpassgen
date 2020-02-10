@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import com.codedead.advancedpassgen.domain.controls.NumberTextField?>
+<GridPane prefHeight="300" prefWidth="550" xmlns="http://javafx.com/javafx/10.0.2-internal"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.codedead.advancedpassgen.domain.controller.MainWindowController">
+
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+
+    <MenuBar GridPane.rowIndex="0">
+        <Menu text="%file">
+            <MenuItem fx:id="MniExport" text="%export"/>
+            <SeparatorMenuItem/>
+            <MenuItem onAction="#exitAction" fx:id="MniExit" text="%exit"/>
+        </Menu>
+        <Menu text="%tools">
+            <MenuItem fx:id="MniSettings" text="%settings"/>
+        </Menu>
+        <Menu text="%helpMenu">
+            <MenuItem fx:id="MniHelp" text="%help"/>
+            <SeparatorMenuItem/>
+            <MenuItem fx:id="MniUpdate" text="%checkForUpdates"/>
+            <SeparatorMenuItem/>
+            <MenuItem fx:id="MniHomepage" text="%homepage"/>
+            <MenuItem fx:id="MniLicense" text="%license"/>
+            <SeparatorMenuItem/>
+            <MenuItem fx:id="MniDonate" text="%donate"/>
+            <MenuItem fx:id="MniAbout" text="%about"/>
+        </Menu>
+    </MenuBar>
+
+    <GridPane GridPane.rowIndex="1">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <TabPane>
+            <Tab fx:id="tabOptions" closable="false" text="%options">
+                <GridPane alignment="CENTER">
+
+                    <columnConstraints>
+                        <ColumnConstraints/>
+                        <ColumnConstraints/>
+                    </columnConstraints>
+
+                    <rowConstraints>
+                        <RowConstraints/>
+                        <RowConstraints/>
+                        <RowConstraints/>
+                    </rowConstraints>
+
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="%length">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </Label>
+                    <NumberTextField fx:id="numLength" minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </NumberTextField>
+
+                    <Label GridPane.rowIndex="1" GridPane.columnIndex="0" text="%amount">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </Label>
+                    <NumberTextField fx:id="numAmount" minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </NumberTextField>
+
+                    <TitledPane GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2" text="%characters">
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints/>
+                                <ColumnConstraints/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                            </rowConstraints>
+
+                            <CheckBox GridPane.columnIndex="0" GridPane.rowIndex="0" text="%smallLetters">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+
+                            <CheckBox GridPane.columnIndex="1" GridPane.rowIndex="0" text="%capitalLetters">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+
+                            <CheckBox GridPane.columnIndex="0" GridPane.rowIndex="1" text="%specialCharacters">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+
+                            <CheckBox GridPane.columnIndex="1" GridPane.rowIndex="1" text="%numbers">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+
+                            <CheckBox GridPane.columnIndex="0" GridPane.rowIndex="2" text="%spaces">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+
+                            <CheckBox GridPane.columnIndex="1" GridPane.rowIndex="2" text="%brackets">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+
+                        </GridPane>
+                    </TitledPane>
+
+                </GridPane>
+            </Tab>
+
+            <Tab fx:id="tabAdvanced" closable="false" text="%advanced">
+
+            </Tab>
+
+            <Tab fx:id="tabList" closable="false" text="%list">
+
+            </Tab>
+
+            <Tab fx:id="tabAdvisor" closable="false" text="%advisor">
+
+            </Tab>
+
+        </TabPane>
+    </GridPane>
+
+</GridPane>

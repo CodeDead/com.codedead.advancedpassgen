@@ -48,7 +48,7 @@ public final class JavaFXApplication extends Application {
 
         try {
             final ResourceBundle bundle = ResourceBundle.getBundle("languages.MainWindow", Locale.forLanguageTag(localeTag));
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainWindow.fxml"), bundle);
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainWindow/MainWindow.fxml"), bundle);
             final Parent root = loader.load();
 
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
