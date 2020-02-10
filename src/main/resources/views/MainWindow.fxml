@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.codedead.advancedpassgen.domain.controller.MainWindowController"
-            prefHeight="400.0" prefWidth="600.0">
+<GridPane prefHeight="300" prefWidth="550" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedead.advancedpassgen.domain.controller.MainWindowController">
 
-</AnchorPane>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+
+    <MenuBar GridPane.rowIndex="0">
+        <menus>
+            <Menu text="%file">
+                <items>
+                    <MenuItem text="%export" />
+                    <SeparatorMenuItem />
+                    <MenuItem text="%exit" />
+                </items>
+            </Menu>
+            <Menu text="%tools">
+                <items>
+                    <MenuItem text="%settings" />
+                </items>
+            </Menu>
+            <Menu text="%helpMenu">
+                <items>
+                    <MenuItem text="%help" />
+                    <SeparatorMenuItem />
+                    <MenuItem text="%checkForUpdates" />
+                    <SeparatorMenuItem />
+                    <MenuItem text="%homepage" />
+                    <MenuItem text="%license" />
+                    <SeparatorMenuItem />
+                    <MenuItem text="%donate" />
+                    <MenuItem text="%about" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <GridPane GridPane.rowIndex="1">
+
+    </GridPane>
+
+</GridPane>
