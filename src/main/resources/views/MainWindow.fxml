@@ -20,7 +20,7 @@
                 <items>
                     <MenuItem fx:id="MniExport" text="%export" />
                     <SeparatorMenuItem />
-                    <MenuItem fx:id="MniExit" text="%exit" />
+                    <MenuItem onAction="#exitAction" fx:id="MniExit" text="%exit" />
                 </items>
             </Menu>
             <Menu text="%tools">

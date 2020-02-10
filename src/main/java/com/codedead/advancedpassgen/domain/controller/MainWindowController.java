@@ -26,6 +26,9 @@ public final class MainWindowController {
     @FXML
     private MenuItem MniExport;
 
+    /**
+     * Method that is invoked to initialize the controller
+     */
     @FXML
     public void initialize() {
         MniExport.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/export.png"))));
@@ -37,5 +40,13 @@ public final class MainWindowController {
         MniHomepage.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/home.png"))));
         MniUpdate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/update.png"))));
         MniHelp.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/help.png"))));
+    }
+
+    /**
+     * Method that is called when the Exit menu item is selected
+     */
+    @FXML
+    public void exitAction() {
+        System.exit(0);
     }
 }

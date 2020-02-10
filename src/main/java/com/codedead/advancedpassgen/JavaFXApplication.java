@@ -27,8 +27,12 @@ public final class JavaFXApplication extends Application {
         launch(args);
     }
 
+    /**
+     * Start the JavaFX application
+     * @param primaryStage The Stage object that can be used to display UI interaction
+     */
     @Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
         String localeTag = "en-US";
 
         try {
@@ -59,17 +63,25 @@ public final class JavaFXApplication extends Application {
         }
     }
 
+    /**
+     * Get the Properties object
+     * @return The Properties object
+     * @throws IOException When the Properties object could not be loaded
+     */
     private Properties getProperties() throws IOException {
-        try (InputStream input = new FileInputStream(PROPFILE)) {
-            Properties prop = new Properties();
-
+        try (final InputStream input = new FileInputStream(PROPFILE)) {
+            final Properties prop = new Properties();
             prop.load(input);
             return prop;
         }
     }
 
+    /**
+     * Create the default properties file from resources
+     * @throws IOException When the default properties file could not be read from the application resources
+     */
     private void createDefaultProperties() throws IOException {
-        try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(PROPFILE)) {
+        try (final InputStream is = this.getClass().getClassLoader().getResourceAsStream(PROPFILE)) {
             if (is != null) {
                 Files.copy(is, Paths.get(PROPFILE));
             } else {
