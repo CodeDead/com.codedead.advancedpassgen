@@ -16,7 +16,7 @@ public final class FxUtils {
      * @param width  The width of the Stage object
      * @param height The height of the Stage object
      */
-    public static void initializeStage(Stage stage, Parent root, String title, double width, double height) {
+    public static void initializeStage(final Stage stage, final Parent root, final String title, final double width, final double height) {
         if (stage == null) throw new NullPointerException("Stage cannot be null!");
         if (root == null) throw new NullPointerException("Parent cannot be null!");
         if (title == null) throw new NullPointerException("Title cannot be null!");
