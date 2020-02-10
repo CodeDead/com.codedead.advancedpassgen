@@ -16,8 +16,7 @@ import java.util.ResourceBundle;
 
 public final class JavaFXApplication extends Application {
 
-    @SuppressWarnings("SpellCheckingInspection")
-    private static String PROPFILE = "default.properties";
+    private static String propFile = "default.properties";
 
     /**
      * Main function
@@ -35,7 +34,7 @@ public final class JavaFXApplication extends Application {
      */
     @Override
     public void start(final Stage primaryStage) throws IOException {
-        final File propFile = new File(PROPFILE);
+        final File propFile = new File(JavaFXApplication.propFile);
         if (!propFile.exists()) {
             createDefaultProperties();
         }
@@ -48,8 +47,14 @@ public final class JavaFXApplication extends Application {
 
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
 
-        final double width =  Double.parseDouble((String) properties.getOrDefault("mainWindowWidth", 550));
-        final double height = Double.parseDouble((String) properties.getOrDefault("mainWindowHeight", 350));
+        final boolean customSize = Boolean.parseBoolean(properties.getProperty("keepWindowSize"));
+        double width = 550;
+        double height = 350;
+
+        if (customSize) {
+            width =  Double.parseDouble(properties.getProperty("mainWindowWidth"));
+            height = Double.parseDouble(properties.getProperty("mainWindowHeight"));
+        }
 
         FxUtils.initializeStage(primaryStage, root, "Advanced PassGen", width, height);
         primaryStage.show();
@@ -62,7 +67,7 @@ public final class JavaFXApplication extends Application {
      * @throws IOException When the Properties object could not be loaded
      */
     private Properties getProperties() throws IOException {
-        try (final InputStream input = new FileInputStream(PROPFILE)) {
+        try (final InputStream input = new FileInputStream(propFile)) {
             final Properties prop = new Properties();
             prop.load(input);
             return prop;
@@ -75,9 +80,9 @@ public final class JavaFXApplication extends Application {
      * @throws IOException When the default properties file could not be read from the application resources
      */
     private void createDefaultProperties() throws IOException {
-        try (final InputStream is = this.getClass().getClassLoader().getResourceAsStream(PROPFILE)) {
+        try (final InputStream is = this.getClass().getClassLoader().getResourceAsStream(propFile)) {
             if (is != null) {
-                Files.copy(is, Paths.get(PROPFILE));
+                Files.copy(is, Paths.get(propFile));
             } else {
                 throw new IOException("Could not load default properties from application resources!");
             }
