@@ -2,16 +2,29 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
+    id "org.beryx.jlink" version "2.17.1"
 }
 
 group 'com.codedead'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 13
+mainClassName="com.codedead.advancedpassgen.JavaFXApplication"
+
+ext {
+    appLauncher = "Advanced PassGen"
+}
 
 javafx {
     version = "13"
-    modules = ['javafx.controls']
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = "${appLauncher}"
+    }
 }
 
 repositories {
