@@ -2,3 +2,7 @@
 .idea
 default.properties
 license.pdf
+build/*
+build/
+.gradle/*
+.gradle/

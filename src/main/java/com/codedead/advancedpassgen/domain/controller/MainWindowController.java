@@ -2,6 +2,7 @@ package com.codedead.advancedpassgen.domain.controller;
 
 import com.codedead.advancedpassgen.domain.controls.NumberTextField;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
+import com.codedead.advancedpassgen.domain.utils.HelpUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ import java.util.ResourceBundle;
 public final class MainWindowController {
 
     private PropertiesController propertiesController;
+    private HelpUtils helpUtils;
 
     @FXML
     private NumberTextField numAmount;
@@ -50,6 +52,13 @@ public final class MainWindowController {
     private MenuItem MniExit;
     @FXML
     private MenuItem MniExport;
+
+    /**
+     * Initialize a new MainWindowController
+     */
+    public MainWindowController() {
+        helpUtils = new HelpUtils();
+    }
 
     /**
      * Get the PropertiesController object
@@ -120,6 +129,46 @@ public final class MainWindowController {
         } catch (IOException ex) {
             ex.printStackTrace();
             FxUtils.showErrorAlert("Error opening about window!", ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+        }
+    }
+
+    /**
+     * Method that is called when the home page should be opened
+     */
+    @FXML
+    public void homepageAction() {
+        helpUtils.openWebsite("https://codedead.com");
+    }
+
+    /**
+     * Method that is called when the donations page should be opened
+     */
+    @FXML
+    public void donateAction() {
+        helpUtils.openWebsite("https://codedead.com/?page_id=302");
+    }
+
+    /**
+     * Method that is called when the license file should be opened
+     */
+    @FXML
+    public void licenseAction() {
+        try {
+            helpUtils.openFile("license.pdf", "/documents/license.pdf");
+        } catch (IOException ex) {
+            FxUtils.showErrorAlert("Error opening license file!", ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+        }
+    }
+
+    /**
+     * Method that is called when the help documentation should be opened
+     */
+    @FXML
+    public void helpAction() {
+        try {
+            helpUtils.openFile("help.pdf", "/documents/help.pdf");
+        } catch (IOException ex) {
+            FxUtils.showErrorAlert("Error opening help file!", ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
 }

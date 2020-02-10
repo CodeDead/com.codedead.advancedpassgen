@@ -51,7 +51,7 @@ public final class AboutWindowController {
         try {
             helpUtils.openFile("license.pdf", "/documents/license.pdf");
         } catch (IOException ex) {
-            FxUtils.showErrorAlert("Error opening license file!", ex.getMessage(), AboutWindowController.class.getResourceAsStream("/images/key.png"));
+            FxUtils.showErrorAlert("Error opening license file!", ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
 

@@ -28,14 +28,14 @@
             <MenuItem fx:id="MniSettings" text="%settings"/>
         </Menu>
         <Menu text="%helpMenu">
-            <MenuItem fx:id="MniHelp" text="%help"/>
+            <MenuItem fx:id="MniHelp" onAction="#helpAction" text="%help"/>
             <SeparatorMenuItem/>
             <MenuItem fx:id="MniUpdate" text="%checkForUpdates"/>
             <SeparatorMenuItem/>
-            <MenuItem fx:id="MniHomepage" text="%homepage"/>
-            <MenuItem fx:id="MniLicense" text="%license"/>
+            <MenuItem fx:id="MniHomepage" onAction="#homepageAction" text="%homepage"/>
+            <MenuItem fx:id="MniLicense" onAction="#licenseAction" text="%license"/>
             <SeparatorMenuItem/>
-            <MenuItem fx:id="MniDonate" text="%donate"/>
+            <MenuItem fx:id="MniDonate" onAction="#donateAction" text="%donate"/>
             <MenuItem fx:id="MniAbout" text="%about" onAction="#aboutAction"/>
         </Menu>
     </MenuBar>
