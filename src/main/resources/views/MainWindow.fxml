@@ -18,27 +18,27 @@
         <menus>
             <Menu text="%file">
                 <items>
-                    <MenuItem text="%export" />
+                    <MenuItem fx:id="MniExport" text="%export" />
                     <SeparatorMenuItem />
-                    <MenuItem text="%exit" />
+                    <MenuItem fx:id="MniExit" text="%exit" />
                 </items>
             </Menu>
             <Menu text="%tools">
                 <items>
-                    <MenuItem text="%settings" />
+                    <MenuItem fx:id="MniSettings" text="%settings" />
                 </items>
             </Menu>
             <Menu text="%helpMenu">
                 <items>
-                    <MenuItem text="%help" />
+                    <MenuItem fx:id="MniHelp" text="%help" />
                     <SeparatorMenuItem />
-                    <MenuItem text="%checkForUpdates" />
+                    <MenuItem fx:id="MniUpdate" text="%checkForUpdates" />
                     <SeparatorMenuItem />
-                    <MenuItem text="%homepage" />
-                    <MenuItem text="%license" />
+                    <MenuItem fx:id="MniHomepage" text="%homepage" />
+                    <MenuItem fx:id="MniLicense" text="%license" />
                     <SeparatorMenuItem />
-                    <MenuItem text="%donate" />
-                    <MenuItem text="%about" />
+                    <MenuItem fx:id="MniDonate" text="%donate" />
+                    <MenuItem fx:id="MniAbout" text="%about" />
                 </items>
             </Menu>
         </menus>
