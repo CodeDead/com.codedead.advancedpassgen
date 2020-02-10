@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          alignment="CENTER"
+          fx:controller="com.codedead.advancedpassgen.domain.controller.AboutWindowController"
+          prefHeight="400.0" prefWidth="600.0">
+
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+    </rowConstraints>
+
+    <columnConstraints>
+        <ColumnConstraints/>
+    </columnConstraints>
+
+    <GridPane>
+
+        <columnConstraints>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+        </columnConstraints>
+
+        <ImageView fx:id="aboutImageView" fitHeight="150.0" fitWidth="200.0" layoutX="61.0" layoutY="83.0"
+                   pickOnBounds="true" preserveRatio="true">
+
+            <GridPane.margin>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </GridPane.margin>
+        </ImageView>
+
+        <Separator orientation="VERTICAL" GridPane.columnIndex="2">
+            <GridPane.margin>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+            </GridPane.margin>
+        </Separator>
+
+        <Label fx:id="AboutLabel" wrapText="true" GridPane.columnIndex="3" text="%aboutText"/>
+        <rowConstraints>
+            <RowConstraints/>
+        </rowConstraints>
+    </GridPane>
+
+    <GridPane GridPane.rowIndex="2">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+
+        <Button cancelButton="true" minWidth="100" onAction="#CloseAction" text="%close"
+                GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
+            <GridPane.margin>
+                <Insets bottom="3" left="3" right="3" top="3"/>
+            </GridPane.margin>
+        </Button>
+
+        <Button minWidth="100" onAction="#LicenseAction" text="%license"
+                GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0"
+                GridPane.valignment="BOTTOM">
+            <GridPane.margin>
+                <Insets bottom="3" left="3" right="3" top="3"/>
+            </GridPane.margin>
+        </Button>
+
+        <Button minWidth="100" onAction="#CodeDeadAction" text="CodeDead"
+                GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
+            <GridPane.margin>
+                <Insets bottom="3" left="3" right="3" top="3"/>
+            </GridPane.margin>
+        </Button>
+    </GridPane>
+
+</GridPane>

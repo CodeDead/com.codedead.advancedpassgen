@@ -2,9 +2,9 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
 <?import com.codedead.advancedpassgen.domain.controls.NumberTextField?>
+
 <GridPane prefHeight="300" prefWidth="550" xmlns="http://javafx.com/javafx/10.0.2-internal"
           xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="com.codedead.advancedpassgen.domain.controller.MainWindowController">
@@ -36,7 +36,7 @@
             <MenuItem fx:id="MniLicense" text="%license"/>
             <SeparatorMenuItem/>
             <MenuItem fx:id="MniDonate" text="%donate"/>
-            <MenuItem fx:id="MniAbout" text="%about"/>
+            <MenuItem fx:id="MniAbout" text="%about" onAction="#aboutAction"/>
         </Menu>
     </MenuBar>
 
@@ -311,7 +311,8 @@
                         </GridPane.margin>
                     </ProgressBar>
 
-                    <Button GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2" maxWidth="Infinity" text="%advise">
+                    <Button GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2" maxWidth="Infinity"
+                            text="%advise">
                         <GridPane.margin>
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>

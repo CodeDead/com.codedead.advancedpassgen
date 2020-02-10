@@ -113,6 +113,7 @@ public final class NumberTextField extends TextField {
 
     /**
      * Get the current value
+     *
      * @return The current value
      */
     public final long getValue() {
