@@ -62,7 +62,7 @@
                         <RowConstraints/>
                     </rowConstraints>
 
-                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="%length">
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="%lengthValue">
                         <GridPane.margin>
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
@@ -229,7 +229,7 @@
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </NumberTextField>
-                            <Button GridPane.columnIndex="2" GridPane.rowIndex="4" text="..." >
+                            <Button GridPane.columnIndex="2" GridPane.rowIndex="4" text="...">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
@@ -240,7 +240,44 @@
             </Tab>
 
             <Tab fx:id="tabList" closable="false" text="%list">
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints/>
+                        <RowConstraints/>
+                    </rowConstraints>
 
+                    <TableView GridPane.rowIndex="0">
+                        <columns>
+                            <TableColumn text="%password"/>
+                            <TableColumn text="%length"/>
+                            <TableColumn text="%strength"/>
+                        </columns>
+                    </TableView>
+
+                    <GridPane GridPane.rowIndex="1">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="ALWAYS"/>
+                            <ColumnConstraints hgrow="ALWAYS"/>
+                        </columnConstraints>
+
+                        <Button text="%generate" GridPane.columnIndex="0" maxWidth="Infinity">
+                            <GridPane.margin>
+                                <Insets bottom="3" left="3" right="3" top="3"/>
+                            </GridPane.margin>
+                        </Button>
+
+                        <Button text="%export" GridPane.columnIndex="1" maxWidth="Infinity">
+                            <GridPane.margin>
+                                <Insets bottom="3" left="3" right="3" top="3"/>
+                            </GridPane.margin>
+                        </Button>
+
+                    </GridPane>
+
+                </GridPane>
             </Tab>
 
             <Tab fx:id="tabAdvisor" closable="false" text="%advisor">
@@ -251,3 +288,4 @@
     </GridPane>
 
 </GridPane>
+
