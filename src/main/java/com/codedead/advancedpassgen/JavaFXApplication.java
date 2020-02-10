@@ -21,6 +21,7 @@ public final class JavaFXApplication extends Application {
 
     /**
      * Main function
+     *
      * @param args Program arguments
      */
     public static void main(String[] args) {
@@ -29,42 +30,34 @@ public final class JavaFXApplication extends Application {
 
     /**
      * Start the JavaFX application
+     *
      * @param primaryStage The Stage object that can be used to display UI interaction
      */
     @Override
-    public void start(final Stage primaryStage) {
-        String localeTag = "en-US";
-
-        try {
-            final File propFile = new File(PROPFILE);
-            if (!propFile.exists()) {
-                createDefaultProperties();
-            }
-            final Properties properties = getProperties();
-            localeTag = properties.getProperty("locale");
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void start(final Stage primaryStage) throws IOException {
+        final File propFile = new File(PROPFILE);
+        if (!propFile.exists()) {
+            createDefaultProperties();
         }
+        final Properties properties = getProperties();
+        String localeTag = properties.getProperty("locale");
 
-        try {
-            final ResourceBundle bundle = ResourceBundle.getBundle("languages.MainWindow", Locale.forLanguageTag(localeTag));
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainWindow/MainWindow.fxml"), bundle);
-            final Parent root = loader.load();
+        final ResourceBundle bundle = ResourceBundle.getBundle("languages.MainWindow", Locale.forLanguageTag(localeTag));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainWindow/MainWindow.fxml"), bundle);
+        final Parent root = loader.load();
 
-            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
 
-            final double width = 550;
-            final double height = 350;
+        final double width =  Double.parseDouble((String) properties.getOrDefault("mainWindowWidth", 550));
+        final double height = Double.parseDouble((String) properties.getOrDefault("mainWindowHeight", 350));
 
-            FxUtils.initializeStage(primaryStage, root, "Advanced PassGen", width, height);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FxUtils.initializeStage(primaryStage, root, "Advanced PassGen", width, height);
+        primaryStage.show();
     }
 
     /**
      * Get the Properties object
+     *
      * @return The Properties object
      * @throws IOException When the Properties object could not be loaded
      */
@@ -78,6 +71,7 @@ public final class JavaFXApplication extends Application {
 
     /**
      * Create the default properties file from resources
+     *
      * @throws IOException When the default properties file could not be read from the application resources
      */
     private void createDefaultProperties() throws IOException {
@@ -85,7 +79,7 @@ public final class JavaFXApplication extends Application {
             if (is != null) {
                 Files.copy(is, Paths.get(PROPFILE));
             } else {
-                throw new NullPointerException("Could not load default properties from application resources!");
+                throw new IOException("Could not load default properties from application resources!");
             }
         }
     }
