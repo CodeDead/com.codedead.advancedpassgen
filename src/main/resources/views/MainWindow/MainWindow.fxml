@@ -67,7 +67,8 @@
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
                     </Label>
-                    <NumberTextField fx:id="numLength" minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <NumberTextField fx:id="numLength" minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                     text="1">
                         <GridPane.margin>
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
@@ -78,13 +79,15 @@
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
                     </Label>
-                    <NumberTextField fx:id="numAmount" minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <NumberTextField fx:id="numAmount" minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                                     text="1">
                         <GridPane.margin>
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
                     </NumberTextField>
 
-                    <TitledPane GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2" text="%characters">
+                    <TitledPane GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                                text="%characters">
                         <GridPane>
                             <columnConstraints>
                                 <ColumnConstraints/>
@@ -139,7 +142,101 @@
             </Tab>
 
             <Tab fx:id="tabAdvanced" closable="false" text="%advanced">
+                <GridPane alignment="CENTER">
+                    <rowConstraints>
+                        <RowConstraints/>
+                        <RowConstraints/>
+                        <RowConstraints/>
+                    </rowConstraints>
 
+                    <CheckBox GridPane.rowIndex="0" GridPane.columnIndex="0" text="%duplicates">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </CheckBox>
+                    <CheckBox GridPane.rowIndex="1" GridPane.columnIndex="0" text="%advancedOptions">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </CheckBox>
+
+                    <TitledPane GridPane.rowIndex="2" GridPane.columnIndex="0" text="%advancedOptions">
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints/>
+                                <ColumnConstraints/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                                <RowConstraints/>
+                            </rowConstraints>
+
+                            <CheckBox GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3"
+                                      text="%convertToBase64">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </CheckBox>
+
+                            <Label GridPane.rowIndex="1" GridPane.columnIndex="0" text="%minimumLength">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </Label>
+
+                            <NumberTextField minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                                             GridPane.columnSpan="2" text="1">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </NumberTextField>
+
+                            <Label GridPane.rowIndex="2" GridPane.columnIndex="0" text="%maximumLength">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </Label>
+
+                            <NumberTextField minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                                             GridPane.columnSpan="2" text="1">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </NumberTextField>
+
+                            <Label GridPane.rowIndex="3" GridPane.columnIndex="0" text="%characterSet">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </Label>
+                            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </TextField>
+
+                            <Label GridPane.rowIndex="4" GridPane.columnIndex="0" text="%seed">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </Label>
+                            <NumberTextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </NumberTextField>
+                            <Button GridPane.columnIndex="2" GridPane.rowIndex="4" text="..." >
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </Button>
+                        </GridPane>
+                    </TitledPane>
+                </GridPane>
             </Tab>
 
             <Tab fx:id="tabList" closable="false" text="%list">

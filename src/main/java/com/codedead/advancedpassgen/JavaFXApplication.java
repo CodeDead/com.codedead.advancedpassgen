@@ -54,7 +54,7 @@ public final class JavaFXApplication extends Application {
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
 
             final double width = 550;
-            final double height = 300;
+            final double height = 350;
 
             FxUtils.initializeStage(primaryStage, root, "Advanced PassGen", width, height);
             primaryStage.show();
