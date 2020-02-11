@@ -20,6 +20,62 @@
     <TabPane GridPane.columnIndex="0" GridPane.rowIndex="0">
         <Tab fx:id="tabGeneral" text="%general" closable="false">
 
+            <GridPane alignment="CENTER">
+
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+
+                <CheckBox GridPane.rowIndex="0" GridPane.columnIndex="0" text="%autoUpdate">
+                    <GridPane.margin>
+                        <Insets bottom="3" left="3" right="3" top="3"/>
+                    </GridPane.margin>
+                </CheckBox>
+
+                <CheckBox GridPane.rowIndex="1" GridPane.columnIndex="0" text="%retainWindowSize">
+                    <GridPane.margin>
+                        <Insets bottom="3" left="3" right="3" top="3"/>
+                    </GridPane.margin>
+                </CheckBox>
+
+                <CheckBox GridPane.rowIndex="2" GridPane.columnIndex="0" text="%showPasswordStrength">
+                    <GridPane.margin>
+                        <Insets bottom="3" left="3" right="3" top="3"/>
+                    </GridPane.margin>
+                </CheckBox>
+
+                <CheckBox GridPane.rowIndex="3" GridPane.columnIndex="0" text="%saveOptions">
+                    <GridPane.margin>
+                        <Insets bottom="3" left="3" right="3" top="3"/>
+                    </GridPane.margin>
+                </CheckBox>
+
+                <GridPane GridPane.rowIndex="4">
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                    </columnConstraints>
+
+                    <Label GridPane.columnIndex="0" text="%defaultCharacterSet">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </Label>
+
+                    <TextField GridPane.columnIndex="1">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </TextField>
+
+                </GridPane>
+
+            </GridPane>
+
         </Tab>
 
         <Tab fx:id="tabAdvanced" text="%advanced" closable="false">
