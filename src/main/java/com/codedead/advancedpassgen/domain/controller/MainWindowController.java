@@ -14,12 +14,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public final class MainWindowController {
 
     private PropertiesController propertiesController;
+    private ResourceBundle resourceBundle;
+
     private HelpUtils helpUtils;
 
     @FXML
@@ -73,11 +74,21 @@ public final class MainWindowController {
      * Set the PropertiesController object
      *
      * @param propertiesController The PropertiesController object
+     * @throws IOException When the ResourceBundle could not be loaded
      */
-    public final void setPropertiesController(final PropertiesController propertiesController) {
+    public final void setPropertiesController(final PropertiesController propertiesController) throws IOException {
         if (propertiesController == null) throw new NullPointerException("PropertiesController cannot be null!");
 
         this.propertiesController = propertiesController;
+        reloadBundle();
+    }
+
+    /**
+     * Reload the current ResourceBundle
+     * @throws IOException When the ResourceBundle could not be loaded
+     */
+    public final void reloadBundle() throws IOException {
+        resourceBundle = ResourceBundle.getBundle("languages.MainWindow", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
     }
 
     /**
@@ -113,10 +124,12 @@ public final class MainWindowController {
     @FXML
     public final void aboutAction() {
         try {
-            final Properties properties = propertiesController.getProperties();
-            final ResourceBundle bundle = ResourceBundle.getBundle("languages.AboutWindow", Locale.forLanguageTag(properties.getProperty("locale")));
+            final ResourceBundle bundle = ResourceBundle.getBundle("languages.AboutWindow", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AboutWindow.fxml"), bundle);
             final Parent root = loader.load();
+
+            final AboutWindowController aboutWindowController = loader.getController();
+            aboutWindowController.setPropertiesController(propertiesController);
 
             final double width = 450;
             final double height = 200;
@@ -127,8 +140,7 @@ public final class MainWindowController {
 
             primaryStage.show();
         } catch (IOException ex) {
-            ex.printStackTrace();
-            FxUtils.showErrorAlert("Error opening about window!", ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+            FxUtils.showErrorAlert(resourceBundle.getString("aboutWindowError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
 
@@ -156,7 +168,7 @@ public final class MainWindowController {
         try {
             helpUtils.openFile("license.pdf", "/documents/license.pdf");
         } catch (IOException ex) {
-            FxUtils.showErrorAlert("Error opening license file!", ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+            FxUtils.showErrorAlert(resourceBundle.getString("licenseFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
 
@@ -168,7 +180,7 @@ public final class MainWindowController {
         try {
             helpUtils.openFile("help.pdf", "/documents/help.pdf");
         } catch (IOException ex) {
-            FxUtils.showErrorAlert("Error opening help file!", ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+            FxUtils.showErrorAlert(resourceBundle.getString("helpFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
 }

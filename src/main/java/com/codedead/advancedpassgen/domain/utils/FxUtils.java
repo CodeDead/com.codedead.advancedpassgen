@@ -60,7 +60,6 @@ public final class FxUtils {
             stage.getIcons().add(new Image(imageStream));
         }
 
-        alert.getDialogPane().setExpanded(true);
         alert.showAndWait();
     }
 
