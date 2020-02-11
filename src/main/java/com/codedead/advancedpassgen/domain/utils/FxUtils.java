@@ -47,7 +47,7 @@ public final class FxUtils {
      * @param content     The content of the error message
      * @param imageStream The InputStream that contains an image
      */
-    public static void showErrorAlert(String header, String content, InputStream imageStream) {
+    public static void showErrorAlert(final String header, final String content, final InputStream imageStream) {
         if (header == null) throw new NullPointerException("Header cannot be null!");
         if (content == null) throw new NullPointerException("Content cannot be null!");
 

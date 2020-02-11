@@ -26,12 +26,12 @@ public final class HelpUtils {
         if (Desktop.isDesktopSupported()) {
             final RunnableSiteOpener siteOpener = new RunnableSiteOpener(url, new IRunnableHelper() {
                 @Override
-                public void executed() {
+                public final void executed() {
 
                 }
 
                 @Override
-                public void exceptionOccurred(Exception ex) {
+                public final void exceptionOccurred(Exception ex) {
 
                 }
             });
@@ -63,12 +63,12 @@ public final class HelpUtils {
             }
             final RunnableFileOpener opener = new RunnableFileOpener(file, new IRunnableHelper() {
                 @Override
-                public void executed() {
+                public final void executed() {
 
                 }
 
                 @Override
-                public void exceptionOccurred(Exception ex) {
+                public final void exceptionOccurred(Exception ex) {
 
                 }
             });

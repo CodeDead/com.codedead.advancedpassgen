@@ -5,7 +5,7 @@ import com.codedead.advancedpassgen.domain.interfaces.IRunnableHelper;
 import java.awt.*;
 import java.net.URI;
 
-public class RunnableSiteOpener implements Runnable {
+public final class RunnableSiteOpener implements Runnable {
 
     private final String url;
     private final IRunnableHelper iRunnableHelper;
@@ -25,7 +25,7 @@ public class RunnableSiteOpener implements Runnable {
     }
 
     @Override
-    public void run() {
+    public final void run() {
         try {
             Desktop.getDesktop().browse(new URI(url));
         } catch (Exception ex) {

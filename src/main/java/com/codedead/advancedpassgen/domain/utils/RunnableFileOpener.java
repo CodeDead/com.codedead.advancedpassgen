@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class RunnableFileOpener implements Runnable {
+public final class RunnableFileOpener implements Runnable {
 
     private final File file;
     private final IRunnableHelper iRunnableHelper;
@@ -26,7 +26,7 @@ public class RunnableFileOpener implements Runnable {
     }
 
     @Override
-    public void run() {
+    public final void run() {
         try {
             Desktop.getDesktop().open(file);
             if (iRunnableHelper != null) {
