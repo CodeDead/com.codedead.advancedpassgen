@@ -183,4 +183,29 @@ public final class MainWindowController {
             FxUtils.showErrorAlert(resourceBundle.getString("helpFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
+
+    /**
+     * Method that is called when the SettingsWindow should be opened
+     */
+    public void settingsAction() {
+        try {
+            final ResourceBundle bundle = ResourceBundle.getBundle("languages.SettingsWindow", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
+            final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SettingsWindow.fxml"), bundle);
+            final Parent root = loader.load();
+
+            final SettingsWindowController settingsWindowController = loader.getController();
+            settingsWindowController.setPropertiesController(propertiesController);
+
+            final double width = 450;
+            final double height = 400;
+
+            final Stage primaryStage = new Stage();
+            primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
+            FxUtils.initializeStage(primaryStage, root, "Advanced PassGen - " + bundle.getString("title"), width, height);
+
+            primaryStage.show();
+        } catch (IOException ex) {
+            FxUtils.showErrorAlert(resourceBundle.getString("settingsWindowError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+        }
+    }
 }

@@ -25,7 +25,7 @@
             <MenuItem onAction="#exitAction" fx:id="MniExit" text="%exit"/>
         </Menu>
         <Menu text="%tools">
-            <MenuItem fx:id="MniSettings" text="%settings"/>
+            <MenuItem fx:id="MniSettings" onAction="#settingsAction" text="%settings"/>
         </Menu>
         <Menu text="%helpMenu">
             <MenuItem fx:id="MniHelp" onAction="#helpAction" text="%help"/>
