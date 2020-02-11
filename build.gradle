@@ -19,6 +19,12 @@ ext {
     moduleName= "Advanced.PassGen"
 }
 
+clean.doFirst {
+    delete 'default.properties'
+    delete 'license.pdf'
+    delete 'help.pdf'
+}
+
 javafx {
     version = "13"
     modules = ['javafx.controls', 'javafx.fxml']
@@ -36,5 +42,5 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'junit:junit:4.12'
 }
