@@ -14,7 +14,7 @@ public final class HelpUtils {
      * Initialize a new HelpUtils
      */
     public HelpUtils() {
-
+        // Empty constructor
     }
 
     /**

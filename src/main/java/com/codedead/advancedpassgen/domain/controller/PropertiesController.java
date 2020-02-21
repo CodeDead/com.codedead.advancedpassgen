@@ -99,7 +99,7 @@ public final class PropertiesController {
      * @param properties The properties that should be stored
      * @throws IOException When the Properties could not be stored
      */
-    public final void setProperties(Properties properties) throws IOException {
+    public final void setProperties(final Properties properties) throws IOException {
         try (final OutputStream out = new FileOutputStream(getFileLocation())) {
             properties.store(out, null);
         }

@@ -66,7 +66,7 @@ public final class AboutWindowController {
      * @param actionEvent The object that called this method
      */
     @FXML
-    public final void CloseAction(final ActionEvent actionEvent) {
+    public final void closeAction(final ActionEvent actionEvent) {
         final Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         stage.close();
     }
@@ -75,7 +75,7 @@ public final class AboutWindowController {
      * Method that is called when the license button is selected
      */
     @FXML
-    public final void LicenseAction() {
+    public final void licenseAction() {
         try {
             helpUtils.openFile("license.pdf", "/documents/license.pdf");
         } catch (IOException ex) {
@@ -87,7 +87,7 @@ public final class AboutWindowController {
      * Method that is called when the CodeDead button is selected
      */
     @FXML
-    public final void CodeDeadAction() {
+    public final void codeDeadAction() {
         helpUtils.openWebsite("https://codedead.com");
     }
 }

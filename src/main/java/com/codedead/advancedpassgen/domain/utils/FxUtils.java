@@ -16,6 +16,13 @@ import java.io.InputStream;
 public final class FxUtils {
 
     /**
+     * Initialize a new FxUtils
+     */
+    private FxUtils() {
+        // Empty constructor
+    }
+
+    /**
      * Initialize a new Stage using shared settings
      *
      * @param stage  The Stage object that should be initialized

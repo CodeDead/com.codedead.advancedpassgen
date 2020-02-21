@@ -60,14 +60,14 @@
             <RowConstraints vgrow="ALWAYS"/>
         </rowConstraints>
 
-        <Button cancelButton="true" minWidth="100" onAction="#CloseAction" text="%close"
+        <Button cancelButton="true" minWidth="100" onAction="#closeAction" text="%close"
                 GridPane.halignment="LEFT" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="3" left="3" right="3" top="3"/>
             </GridPane.margin>
         </Button>
 
-        <Button minWidth="100" onAction="#LicenseAction" text="%license"
+        <Button minWidth="100" onAction="#licenseAction" text="%license"
                 GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0"
                 GridPane.valignment="BOTTOM">
             <GridPane.margin>
@@ -75,7 +75,7 @@
             </GridPane.margin>
         </Button>
 
-        <Button minWidth="100" onAction="#CodeDeadAction" text="CodeDead"
+        <Button minWidth="100" onAction="#codeDeadAction" text="CodeDead"
                 GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0" GridPane.valignment="BOTTOM">
             <GridPane.margin>
                 <Insets bottom="3" left="3" right="3" top="3"/>

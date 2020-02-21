@@ -37,23 +37,23 @@ public final class MainWindowController {
     @FXML
     private Tab tabOptions;
     @FXML
-    private MenuItem MniHelp;
+    private MenuItem mniHelp;
     @FXML
-    private MenuItem MniUpdate;
+    private MenuItem mniUpdate;
     @FXML
-    private MenuItem MniHomepage;
+    private MenuItem mniHomepage;
     @FXML
-    private MenuItem MniLicense;
+    private MenuItem mniLicense;
     @FXML
-    private MenuItem MniDonate;
+    private MenuItem mniDonate;
     @FXML
-    private MenuItem MniAbout;
+    private MenuItem mniAbout;
     @FXML
-    private MenuItem MniSettings;
+    private MenuItem mniSettings;
     @FXML
-    private MenuItem MniExit;
+    private MenuItem mniExit;
     @FXML
-    private MenuItem MniExport;
+    private MenuItem mniExport;
 
     /**
      * Initialize a new MainWindowController
@@ -98,15 +98,15 @@ public final class MainWindowController {
     @FXML
     public void initialize() {
         // Menu items
-        MniExport.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/export.png"))));
-        MniExit.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/remove.png"))));
-        MniSettings.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/settings.png"))));
-        MniAbout.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/about.png"))));
-        MniDonate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/donate.png"))));
-        MniLicense.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/license.png"))));
-        MniHomepage.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/home.png"))));
-        MniUpdate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/update.png"))));
-        MniHelp.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/help.png"))));
+        mniExport.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/export.png"))));
+        mniExit.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/remove.png"))));
+        mniSettings.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/settings.png"))));
+        mniAbout.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/about.png"))));
+        mniDonate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/donate.png"))));
+        mniLicense.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/license.png"))));
+        mniHomepage.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/home.png"))));
+        mniUpdate.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/update.png"))));
+        mniHelp.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/help.png"))));
         // Tab items
         tabOptions.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/home.png"))));
         tabAdvanced.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/settings.png"))));

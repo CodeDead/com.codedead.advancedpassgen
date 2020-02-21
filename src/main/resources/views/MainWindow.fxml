@@ -20,23 +20,23 @@
 
     <MenuBar GridPane.rowIndex="0">
         <Menu text="%file">
-            <MenuItem fx:id="MniExport" text="%export"/>
+            <MenuItem fx:id="mniExport" text="%export"/>
             <SeparatorMenuItem/>
-            <MenuItem onAction="#exitAction" fx:id="MniExit" text="%exit"/>
+            <MenuItem onAction="#exitAction" fx:id="mniExit" text="%exit"/>
         </Menu>
         <Menu text="%tools">
-            <MenuItem fx:id="MniSettings" onAction="#settingsAction" text="%settings"/>
+            <MenuItem fx:id="mniSettings" onAction="#settingsAction" text="%settings"/>
         </Menu>
         <Menu text="%helpMenu">
-            <MenuItem fx:id="MniHelp" onAction="#helpAction" text="%help"/>
+            <MenuItem fx:id="mniHelp" onAction="#helpAction" text="%help"/>
             <SeparatorMenuItem/>
-            <MenuItem fx:id="MniUpdate" text="%checkForUpdates"/>
+            <MenuItem fx:id="mniUpdate" text="%checkForUpdates"/>
             <SeparatorMenuItem/>
-            <MenuItem fx:id="MniHomepage" onAction="#homepageAction" text="%homepage"/>
-            <MenuItem fx:id="MniLicense" onAction="#licenseAction" text="%license"/>
+            <MenuItem fx:id="mniHomepage" onAction="#homepageAction" text="%homepage"/>
+            <MenuItem fx:id="mniLicense" onAction="#licenseAction" text="%license"/>
             <SeparatorMenuItem/>
-            <MenuItem fx:id="MniDonate" onAction="#donateAction" text="%donate"/>
-            <MenuItem fx:id="MniAbout" text="%about" onAction="#aboutAction"/>
+            <MenuItem fx:id="mniDonate" onAction="#donateAction" text="%donate"/>
+            <MenuItem fx:id="mniAbout" text="%about" onAction="#aboutAction"/>
         </Menu>
     </MenuBar>
 

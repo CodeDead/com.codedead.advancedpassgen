@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public final class JavaFXApplication extends Application {
 
-    private static String propFile = "default.properties";
+    private static final String PROP_FILE_LOCATION = "default.properties";
 
     /**
      * Main function
@@ -34,8 +34,8 @@ public final class JavaFXApplication extends Application {
      */
     @Override
     public void start(final Stage primaryStage) throws IOException {
-        final PropertiesController propertiesController = new PropertiesController("default.properties", "default.properties");
-        final File propFile = new File(JavaFXApplication.propFile);
+        final PropertiesController propertiesController = new PropertiesController(PROP_FILE_LOCATION, PROP_FILE_LOCATION);
+        final File propFile = new File(JavaFXApplication.PROP_FILE_LOCATION);
 
         if (!propFile.exists()) {
             propertiesController.createDefaultProperties();
