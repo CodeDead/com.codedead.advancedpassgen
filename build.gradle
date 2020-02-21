@@ -16,7 +16,7 @@ mainClassName = "$moduleName/com.codedead.advancedpassgen.JavaFXApplication"
 
 ext {
     appLauncher = "Advanced PassGen"
-    moduleName= "Advanced.PassGen"
+    moduleName= "AdvancedPassGen"
 }
 
 clean.doFirst {
