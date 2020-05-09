@@ -1,22 +1,27 @@
 plugins {
     id 'java'
-    id 'org.openjfx.javafxplugin' version '0.0.8'
-    id 'org.beryx.jlink' version '2.17.2'
     id 'application'
     id 'idea'
     id 'eclipse'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'org.beryx.jlink' version '2.18.0'
 }
 
 group 'com.codedead'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 13
-targetCompatibility = 13
-mainClassName = "$moduleName/com.codedead.advancedpassgen.JavaFXApplication"
+sourceCompatibility = 14
+targetCompatibility = 14
 
-ext {
-    appLauncher = "Advanced PassGen"
-    moduleName= "AdvancedPassGen"
+plugins.withType(JavaPlugin).configureEach {
+    java {
+        modularity.inferModulePath = true
+    }
+}
+
+application {
+    mainModule = 'AdvancedPassGen'
+    mainClass = 'com.codedead.advancedpassgen.JavaFXApplication'
 }
 
 clean.doFirst {
@@ -26,14 +31,15 @@ clean.doFirst {
 }
 
 javafx {
-    version = "13"
+    version = "14"
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
-        name = "${appLauncher}"
+        name = "Advanced PassGen"
+        noConsole = true
     }
 }
 
