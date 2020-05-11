@@ -4,7 +4,7 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'org.openjfx.javafxplugin' version '0.0.8'
-    id 'org.beryx.jlink' version '2.18.0'
+    id 'org.beryx.jlink' version '2.19.0'
 }
 
 group 'com.codedead'
