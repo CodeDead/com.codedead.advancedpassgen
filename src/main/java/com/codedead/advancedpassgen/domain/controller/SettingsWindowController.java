@@ -1,7 +1,10 @@
 package com.codedead.advancedpassgen.domain.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -14,6 +17,8 @@ import java.util.ResourceBundle;
 
 public final class SettingsWindowController {
 
+    @FXML
+    private ComboBox<String> cboLanguage;
     @FXML
     private TextField txtCharacterSet;
     @FXML
@@ -77,5 +82,6 @@ public final class SettingsWindowController {
         chbPasswordStrength.setSelected(Boolean.parseBoolean(properties.getProperty("displayPasswordStrength")));
         chbSaveOptions.setSelected(Boolean.parseBoolean(properties.getProperty("saveOptions")));
         txtCharacterSet.setText(properties.getProperty("defaultCharacterSet"));
+        cboLanguage.getSelectionModel().select(Integer.parseInt(properties.getProperty("languageIndex")));
     }
 }

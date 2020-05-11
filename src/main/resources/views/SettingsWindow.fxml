@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.codedead.advancedpassgen.domain.controller.SettingsWindowController"
@@ -36,13 +38,15 @@
                     </GridPane.margin>
                 </CheckBox>
 
-                <CheckBox fx:id="chbKeepWindowSize" GridPane.rowIndex="1" GridPane.columnIndex="0" text="%retainWindowSize">
+                <CheckBox fx:id="chbKeepWindowSize" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                          text="%retainWindowSize">
                     <GridPane.margin>
                         <Insets bottom="3" left="3" right="3" top="3"/>
                     </GridPane.margin>
                 </CheckBox>
 
-                <CheckBox fx:id="chbPasswordStrength" GridPane.rowIndex="2" GridPane.columnIndex="0" text="%showPasswordStrength">
+                <CheckBox fx:id="chbPasswordStrength" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                          text="%showPasswordStrength">
                     <GridPane.margin>
                         <Insets bottom="3" left="3" right="3" top="3"/>
                     </GridPane.margin>
@@ -55,27 +59,47 @@
                 </CheckBox>
 
                 <GridPane GridPane.rowIndex="4">
+                    <rowConstraints>
+                        <RowConstraints/>
+                        <RowConstraints/>
+                    </rowConstraints>
                     <columnConstraints>
-                        <ColumnConstraints />
-                        <ColumnConstraints />
+                        <ColumnConstraints/>
+                        <ColumnConstraints/>
                     </columnConstraints>
 
-                    <Label GridPane.columnIndex="0" text="%defaultCharacterSet">
+                    <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="%defaultCharacterSet">
                         <GridPane.margin>
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
                     </Label>
 
-                    <TextField fx:id="txtCharacterSet" GridPane.columnIndex="1">
+                    <TextField fx:id="txtCharacterSet" GridPane.rowIndex="0" GridPane.columnIndex="1">
                         <GridPane.margin>
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
                     </TextField>
 
+                    <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="%language">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                    </Label>
+
+                    <ComboBox fx:id="cboLanguage" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity">
+                        <GridPane.margin>
+                            <Insets bottom="3" left="3" right="3" top="3"/>
+                        </GridPane.margin>
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Dutch"/>
+                                <String fx:value="English"/>
+                                <String fx:value="French"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
                 </GridPane>
-
             </GridPane>
-
         </Tab>
 
         <Tab fx:id="tabAdvanced" text="%advanced" closable="false">
