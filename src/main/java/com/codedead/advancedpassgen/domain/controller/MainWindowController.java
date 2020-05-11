@@ -86,10 +86,11 @@ public final class MainWindowController {
 
     /**
      * Reload the current ResourceBundle
+     *
      * @throws IOException When the ResourceBundle could not be loaded
      */
     public final void reloadBundle() throws IOException {
-        resourceBundle = ResourceBundle.getBundle("languages.MainWindow", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
+        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
     }
 
     /**
@@ -127,7 +128,7 @@ public final class MainWindowController {
         try {
             final Properties properties = propertiesController.getProperties();
 
-            final ResourceBundle bundle = ResourceBundle.getBundle("languages.AboutWindow", Locale.forLanguageTag(properties.getProperty("locale")));
+            final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getProperty("locale")));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AboutWindow.fxml"), bundle);
             final Parent root = loader.load();
 
@@ -139,7 +140,7 @@ public final class MainWindowController {
 
             final Stage primaryStage = new Stage();
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
-            FxUtils.initializeStage(primaryStage, root, "Advanced PassGen - " + bundle.getString("title"), width, height);
+            FxUtils.initializeStage(primaryStage, root, "Advanced PassGen - " + bundle.getString("about.title"), width, height);
 
             primaryStage.show();
         } catch (IOException | NumberFormatException ex) {
@@ -193,7 +194,7 @@ public final class MainWindowController {
     public void settingsAction() {
         try {
             final Properties properties = propertiesController.getProperties();
-            final ResourceBundle bundle = ResourceBundle.getBundle("languages.SettingsWindow", Locale.forLanguageTag(properties.getProperty("locale")));
+            final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getProperty("locale")));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SettingsWindow.fxml"), bundle);
             final Parent root = loader.load();
 
@@ -205,7 +206,7 @@ public final class MainWindowController {
 
             final Stage primaryStage = new Stage();
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
-            FxUtils.initializeStage(primaryStage, root, "Advanced PassGen - " + bundle.getString("title"), width, height);
+            FxUtils.initializeStage(primaryStage, root, "Advanced PassGen - " + bundle.getString("settings.title"), width, height);
 
             primaryStage.show();
         } catch (IOException ex) {

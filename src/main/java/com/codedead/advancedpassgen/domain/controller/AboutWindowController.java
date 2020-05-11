@@ -18,7 +18,7 @@ public final class AboutWindowController {
     @FXML
     private ImageView aboutImageView;
 
-    private HelpUtils helpUtils;
+    private final HelpUtils helpUtils;
     private PropertiesController propertiesController;
     private ResourceBundle resourceBundle;
 
@@ -50,7 +50,7 @@ public final class AboutWindowController {
     }
 
     public final void reloadBundle() throws IOException {
-        resourceBundle = ResourceBundle.getBundle("languages.AboutWindow", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
+        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
     }
 
     @FXML

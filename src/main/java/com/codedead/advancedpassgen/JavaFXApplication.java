@@ -44,7 +44,7 @@ public final class JavaFXApplication extends Application {
         final Properties properties = propertiesController.getProperties();
         final String localeTag = properties.getProperty("locale");
 
-        final ResourceBundle bundle = ResourceBundle.getBundle("languages.MainWindow", Locale.forLanguageTag(localeTag));
+        final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(localeTag));
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainWindow.fxml"), bundle);
         final Parent root = loader.load();
         final MainWindowController mainWindowController = loader.getController();
