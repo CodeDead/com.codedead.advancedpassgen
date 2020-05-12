@@ -2,6 +2,7 @@ package com.codedead.advancedpassgen;
 
 import com.codedead.advancedpassgen.domain.controller.MainWindowController;
 import com.codedead.advancedpassgen.domain.controller.PropertiesController;
+import com.codedead.advancedpassgen.domain.objects.AppSettings;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +12,6 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public final class JavaFXApplication extends Application {
@@ -41,8 +41,8 @@ public final class JavaFXApplication extends Application {
             propertiesController.createDefaultProperties();
         }
 
-        final Properties properties = propertiesController.getProperties();
-        final String localeTag = properties.getProperty("locale");
+        final AppSettings settings = propertiesController.getAppSettings();
+        final String localeTag = settings.getLocale();
 
         final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(localeTag));
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainWindow.fxml"), bundle);
@@ -52,13 +52,13 @@ public final class JavaFXApplication extends Application {
         mainWindowController.setPropertiesController(propertiesController);
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
 
-        final boolean customSize = Boolean.parseBoolean(properties.getProperty("keepWindowSize"));
+        final boolean customSize = settings.isKeepWindowSize();
         double width = 550;
         double height = 350;
 
         if (customSize) {
-            width =  Double.parseDouble(properties.getProperty("mainWindowWidth"));
-            height = Double.parseDouble(properties.getProperty("mainWindowHeight"));
+            width =  settings.getMainWindowWidth();
+            height = settings.getMainWindowHeight();
         }
 
         FxUtils.initializeStage(primaryStage, root, "Advanced PassGen", width, height);

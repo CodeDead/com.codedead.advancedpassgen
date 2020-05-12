@@ -1,5 +1,7 @@
 package com.codedead.advancedpassgen.domain.controller;
 
+import com.codedead.advancedpassgen.domain.objects.AppSettings;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -80,27 +82,59 @@ public final class PropertiesController {
     }
 
     /**
-     * Get the Properties object
+     * Get the AppSettings object
      *
-     * @return The Properties object
-     * @throws IOException When the Properties object could not be loaded
+     * @return The AppSettings object
+     * @throws IOException When the Properties could not be loaded
      */
-    public final Properties getProperties() throws IOException {
+    public final AppSettings getAppSettings() throws IOException {
         try (final InputStream input = new FileInputStream(getFileLocation())) {
             final Properties prop = new Properties();
             prop.load(input);
-            return prop;
+
+            final AppSettings appSettings = new AppSettings();
+
+            appSettings.setAutoUpdate(Boolean.parseBoolean(prop.getProperty("autoUpdate")));
+            appSettings.setLocale(prop.getProperty("locale"));
+            appSettings.setKeepWindowSize(Boolean.parseBoolean(prop.getProperty("keepWindowSize")));
+            appSettings.setSaveOptions(Boolean.parseBoolean(prop.getProperty("saveOptions")));
+            appSettings.setDisplayPasswordStrength(Boolean.parseBoolean(prop.getProperty("displayPasswordStrength")));
+            appSettings.setMainWindowWidth(Double.parseDouble(prop.getProperty("mainWindowWidth")));
+            appSettings.setMainWindowHeight(Double.parseDouble(prop.getProperty("mainWindowHeight")));
+            appSettings.setAboutWindowWidth(Double.parseDouble(prop.getProperty("aboutWindowWidth")));
+            appSettings.setAboutWindowHeight(Double.parseDouble(prop.getProperty("aboutWindowHeight")));
+            appSettings.setSettingsWindowWidth(Double.parseDouble(prop.getProperty("settingsWindowWidth")));
+            appSettings.setSettingsWindowHeight(Double.parseDouble(prop.getProperty("settingsWindowHeight")));
+            appSettings.setDefaultCharacterSet(prop.getProperty("defaultCharacterSet"));
+
+            return appSettings;
         }
     }
 
     /**
-     * Store the properties
+     * Store the AppSettings object
      *
-     * @param properties The properties that should be stored
+     * @param appSettings The AppSettings object that should be stored
      * @throws IOException When the Properties could not be stored
      */
-    public final void setProperties(final Properties properties) throws IOException {
+    public final void saveAppSettings(final AppSettings appSettings) throws IOException {
         try (final OutputStream out = new FileOutputStream(getFileLocation())) {
+
+            final Properties properties = new Properties();
+
+            properties.setProperty("autoUpdate", String.valueOf(appSettings.isAutoUpdate()));
+            properties.setProperty("locale", appSettings.getLocale());
+            properties.setProperty("keepWindowSize", String.valueOf(appSettings.isKeepWindowSize()));
+            properties.setProperty("saveOptions", String.valueOf(appSettings.isSaveOptions()));
+            properties.setProperty("displayPasswordStrength", String.valueOf(appSettings.isDisplayPasswordStrength()));
+            properties.setProperty("mainWindowWidth", String.valueOf(appSettings.getMainWindowWidth()));
+            properties.setProperty("mainWindowHeight", String.valueOf(appSettings.getMainWindowHeight()));
+            properties.setProperty("aboutWindowWidth", String.valueOf(appSettings.getAboutWindowWidth()));
+            properties.setProperty("aboutWindowHeight", String.valueOf(appSettings.getAboutWindowHeight()));
+            properties.setProperty("settingsWindowWidth", String.valueOf(appSettings.getSettingsWindowWidth()));
+            properties.setProperty("settingsWindowHeight", String.valueOf(appSettings.getSettingsWindowHeight()));
+            properties.setProperty("defaultCharacterSet", appSettings.getDefaultCharacterSet());
+
             properties.store(out, null);
         }
     }

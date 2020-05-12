@@ -1,6 +1,7 @@
 package com.codedead.advancedpassgen.domain.controller;
 
 import com.codedead.advancedpassgen.domain.controls.NumberTextField;
+import com.codedead.advancedpassgen.domain.objects.AppSettings;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import com.codedead.advancedpassgen.domain.utils.HelpUtils;
 import javafx.fxml.FXML;
@@ -14,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public final class MainWindowController {
@@ -90,7 +90,7 @@ public final class MainWindowController {
      * @throws IOException When the ResourceBundle could not be loaded
      */
     public final void reloadBundle() throws IOException {
-        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
+        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getAppSettings().getLocale()));
     }
 
     /**
@@ -126,17 +126,17 @@ public final class MainWindowController {
     @FXML
     public final void aboutAction() {
         try {
-            final Properties properties = propertiesController.getProperties();
+            final AppSettings properties = propertiesController.getAppSettings();
 
-            final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getProperty("locale")));
+            final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getLocale()));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AboutWindow.fxml"), bundle);
             final Parent root = loader.load();
 
             final AboutWindowController aboutWindowController = loader.getController();
             aboutWindowController.setPropertiesController(propertiesController);
 
-            final double width = Double.parseDouble(properties.getProperty("aboutWindowWidth"));
-            final double height = Double.parseDouble(properties.getProperty("aboutWindowHeight"));
+            final double width = properties.getAboutWindowWidth();
+            final double height = properties.getAboutWindowHeight();
 
             final Stage primaryStage = new Stage();
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
@@ -193,16 +193,16 @@ public final class MainWindowController {
      */
     public void settingsAction() {
         try {
-            final Properties properties = propertiesController.getProperties();
-            final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getProperty("locale")));
+            final AppSettings properties = propertiesController.getAppSettings();
+            final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getLocale()));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SettingsWindow.fxml"), bundle);
             final Parent root = loader.load();
 
             final SettingsWindowController settingsWindowController = loader.getController();
             settingsWindowController.setPropertiesController(propertiesController);
 
-            final double width = Double.parseDouble(properties.getProperty("settingsWindowWidth"));
-            final double height = Double.parseDouble(properties.getProperty("settingsWindowHeight"));
+            final double width = properties.getSettingsWindowWidth();
+            final double height = properties.getSettingsWindowHeight();
 
             final Stage primaryStage = new Stage();
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));

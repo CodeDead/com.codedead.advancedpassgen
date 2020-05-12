@@ -1,7 +1,6 @@
 package com.codedead.advancedpassgen.domain.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import com.codedead.advancedpassgen.domain.objects.AppSettings;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -12,7 +11,6 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public final class SettingsWindowController {
@@ -68,7 +66,7 @@ public final class SettingsWindowController {
      * @throws IOException When the ResourceBundle could not be loaded
      */
     public final void reloadBundle() throws IOException {
-        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
+        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getAppSettings().getLocale()));
     }
 
     /**
@@ -76,12 +74,12 @@ public final class SettingsWindowController {
      * @throws IOException When the Properties file could not be loaded
      */
     public final void loadSettings() throws IOException {
-        final Properties properties = propertiesController.getProperties();
-        chbAutoUpdate.setSelected(Boolean.parseBoolean(properties.getProperty("autoUpdate")));
-        chbKeepWindowSize.setSelected(Boolean.parseBoolean(properties.getProperty("keepWindowSize")));
-        chbPasswordStrength.setSelected(Boolean.parseBoolean(properties.getProperty("displayPasswordStrength")));
-        chbSaveOptions.setSelected(Boolean.parseBoolean(properties.getProperty("saveOptions")));
-        txtCharacterSet.setText(properties.getProperty("defaultCharacterSet"));
-        cboLanguage.getSelectionModel().select(Integer.parseInt(properties.getProperty("languageIndex")));
+        final AppSettings properties = propertiesController.getAppSettings();
+        chbAutoUpdate.setSelected(properties.isAutoUpdate());
+        chbKeepWindowSize.setSelected(properties.isKeepWindowSize());
+        chbPasswordStrength.setSelected(properties.isDisplayPasswordStrength());
+        chbSaveOptions.setSelected(properties.isSaveOptions());
+        txtCharacterSet.setText(properties.getDefaultCharacterSet());
+        cboLanguage.getSelectionModel().select(properties.getLanguageIndex());
     }
 }

@@ -50,7 +50,7 @@ public final class AboutWindowController {
     }
 
     public final void reloadBundle() throws IOException {
-        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getProperties().getProperty("locale")));
+        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getAppSettings().getLocale()));
     }
 
     @FXML
