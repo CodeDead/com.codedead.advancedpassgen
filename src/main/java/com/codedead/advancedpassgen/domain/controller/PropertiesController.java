@@ -1,6 +1,8 @@
 package com.codedead.advancedpassgen.domain.controller;
 
 import com.codedead.advancedpassgen.domain.objects.AppSettings;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -11,6 +13,9 @@ public final class PropertiesController {
 
     private String fileLocation;
     private String resourceLocation;
+    private AppSettings appSettings;
+
+    private final Logger logger;
 
     /**
      * Initialize a new PropertiesController
@@ -21,6 +26,7 @@ public final class PropertiesController {
     public PropertiesController(final String fileLocation, final String resourceLocation) {
         setFileLocation(fileLocation);
         setResourceLocation(resourceLocation);
+        logger = LogManager.getLogger(PropertiesController.class);
     }
 
     /**
@@ -29,6 +35,7 @@ public final class PropertiesController {
      * @throws IOException When the default properties file could not be read from the application resources
      */
     public final void createDefaultProperties() throws IOException {
+        logger.info("Creating default properties file");
         try (final InputStream is = getClass().getClassLoader().getResourceAsStream(getResourceLocation())) {
             if (is != null) {
                 Files.copy(is, Paths.get(getFileLocation()));
@@ -82,12 +89,38 @@ public final class PropertiesController {
     }
 
     /**
+     * Set the AppSettings object
+     *
+     * @param appSettings The AppSettings object
+     */
+    public final void setAppSettings(final AppSettings appSettings) {
+        if (appSettings == null) throw new NullPointerException("AppSettings cannot be null!");
+
+        this.appSettings = appSettings;
+    }
+
+    /**
      * Get the AppSettings object
      *
      * @return The AppSettings object
+     */
+    public final AppSettings getAppSettings() {
+        return appSettings;
+    }
+
+    /**
+     * Load the AppSettings object
+     *
      * @throws IOException When the Properties could not be loaded
      */
-    public final AppSettings getAppSettings() throws IOException {
+    public final void loadAppSettings() throws IOException {
+        logger.info(String.format("Retrieving AppSettings from file %s", getFileLocation()));
+
+        if (getFileLocation() == null)
+            throw new NullPointerException("Properties file location cannot be null!");
+        if (getFileLocation().trim().length() == 0)
+            throw new IllegalArgumentException("Properties file location cannot be empty!");
+
         try (final InputStream input = new FileInputStream(getFileLocation())) {
             final Properties prop = new Properties();
             prop.load(input);
@@ -107,17 +140,17 @@ public final class PropertiesController {
             appSettings.setSettingsWindowHeight(Double.parseDouble(prop.getProperty("settingsWindowHeight")));
             appSettings.setDefaultCharacterSet(prop.getProperty("defaultCharacterSet"));
 
-            return appSettings;
+            setAppSettings(appSettings);
         }
     }
 
     /**
      * Store the AppSettings object
      *
-     * @param appSettings The AppSettings object that should be stored
      * @throws IOException When the Properties could not be stored
      */
-    public final void saveAppSettings(final AppSettings appSettings) throws IOException {
+    public final void saveAppSettings() throws IOException {
+        logger.info(String.format("Saving AppSettings to %s", getFileLocation()));
         try (final OutputStream out = new FileOutputStream(getFileLocation())) {
 
             final Properties properties = new Properties();

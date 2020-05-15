@@ -14,9 +14,13 @@ import java.io.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public final class JavaFXApplication extends Application {
 
     private static final String PROP_FILE_LOCATION = "default.properties";
+    private static final Logger logger = LogManager.getLogger(JavaFXApplication.class);
 
     /**
      * Main function
@@ -33,12 +37,27 @@ public final class JavaFXApplication extends Application {
      * @param primaryStage The Stage object that can be used to display UI interaction
      */
     @Override
-    public void start(final Stage primaryStage) throws IOException {
+    public void start(final Stage primaryStage) {
         final PropertiesController propertiesController = new PropertiesController(PROP_FILE_LOCATION, PROP_FILE_LOCATION);
-        final File propFile = new File(JavaFXApplication.PROP_FILE_LOCATION);
+        final File propFile = new File(PROP_FILE_LOCATION);
 
         if (!propFile.exists()) {
-            propertiesController.createDefaultProperties();
+            logger.info("Properties file does not exist");
+
+            try {
+                propertiesController.createDefaultProperties();
+            } catch (IOException ex) {
+                logger.error("Error creating default properties file", ex);
+                return;
+            }
+        }
+
+        // Load the application settings from disk
+        try {
+            propertiesController.loadAppSettings();
+        } catch (IOException ex) {
+            logger.error("Error loading application settings", ex);
+            return;
         }
 
         final AppSettings settings = propertiesController.getAppSettings();
@@ -46,7 +65,14 @@ public final class JavaFXApplication extends Application {
 
         final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(localeTag));
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MainWindow.fxml"), bundle);
-        final Parent root = loader.load();
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException ex) {
+            logger.error("Unable to load FXML file", ex);
+            return;
+        }
+
         final MainWindowController mainWindowController = loader.getController();
 
         mainWindowController.setPropertiesController(propertiesController);
@@ -57,7 +83,7 @@ public final class JavaFXApplication extends Application {
         double height = 350;
 
         if (customSize) {
-            width =  settings.getMainWindowWidth();
+            width = settings.getMainWindowWidth();
             height = settings.getMainWindowHeight();
         }
 

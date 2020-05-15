@@ -75,9 +75,8 @@ public final class MainWindowController {
      * Set the PropertiesController object
      *
      * @param propertiesController The PropertiesController object
-     * @throws IOException When the ResourceBundle could not be loaded
      */
-    public final void setPropertiesController(final PropertiesController propertiesController) throws IOException {
+    public final void setPropertiesController(final PropertiesController propertiesController) {
         if (propertiesController == null) throw new NullPointerException("PropertiesController cannot be null!");
 
         this.propertiesController = propertiesController;
@@ -86,10 +85,8 @@ public final class MainWindowController {
 
     /**
      * Reload the current ResourceBundle
-     *
-     * @throws IOException When the ResourceBundle could not be loaded
      */
-    public final void reloadBundle() throws IOException {
+    public final void reloadBundle() {
         resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getAppSettings().getLocale()));
     }
 
