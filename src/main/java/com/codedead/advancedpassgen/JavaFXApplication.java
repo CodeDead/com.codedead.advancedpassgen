@@ -2,7 +2,7 @@ package com.codedead.advancedpassgen;
 
 import com.codedead.advancedpassgen.domain.controller.MainWindowController;
 import com.codedead.advancedpassgen.domain.controller.PropertiesController;
-import com.codedead.advancedpassgen.domain.objects.AppSettings;
+import com.codedead.advancedpassgen.domain.objects.ApplicationProperties;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -60,7 +60,7 @@ public final class JavaFXApplication extends Application {
             return;
         }
 
-        final AppSettings settings = propertiesController.getAppSettings();
+        final ApplicationProperties settings = propertiesController.getApplicationProperties();
         final String localeTag = settings.getLocale();
 
         final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(localeTag));

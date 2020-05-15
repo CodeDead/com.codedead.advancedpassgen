@@ -5,6 +5,7 @@ import com.codedead.advancedpassgen.domain.utils.HelpUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -15,6 +16,8 @@ import java.util.ResourceBundle;
 
 public final class AboutWindowController {
 
+    @FXML
+    private Label aboutLabel;
     @FXML
     private ImageView aboutImageView;
 
@@ -31,6 +34,7 @@ public final class AboutWindowController {
 
     /**
      * Get the PropertiesController
+     *
      * @return The PropertiesController
      */
     public final PropertiesController getPropertiesController() {
@@ -39,6 +43,7 @@ public final class AboutWindowController {
 
     /**
      * Set the PropertiesController
+     *
      * @param propertiesController The PropertiesController
      * @throws IOException When the ResourceBundle could not be loaded
      */
@@ -47,10 +52,11 @@ public final class AboutWindowController {
 
         this.propertiesController = propertiesController;
         reloadBundle();
+        aboutLabel.setText(aboutLabel.getText().replace("{x}", propertiesController.getApplicationProperties().getApplicationVersion().toString()));
     }
 
-    public final void reloadBundle() throws IOException {
-        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getAppSettings().getLocale()));
+    public final void reloadBundle() {
+        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
     }
 
     @FXML

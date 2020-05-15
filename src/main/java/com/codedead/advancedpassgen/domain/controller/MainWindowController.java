@@ -1,7 +1,7 @@
 package com.codedead.advancedpassgen.domain.controller;
 
 import com.codedead.advancedpassgen.domain.controls.NumberTextField;
-import com.codedead.advancedpassgen.domain.objects.AppSettings;
+import com.codedead.advancedpassgen.domain.objects.ApplicationProperties;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import com.codedead.advancedpassgen.domain.utils.HelpUtils;
 import javafx.fxml.FXML;
@@ -87,7 +87,7 @@ public final class MainWindowController {
      * Reload the current ResourceBundle
      */
     public final void reloadBundle() {
-        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getAppSettings().getLocale()));
+        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
     }
 
     /**
@@ -123,7 +123,7 @@ public final class MainWindowController {
     @FXML
     public final void aboutAction() {
         try {
-            final AppSettings properties = propertiesController.getAppSettings();
+            final ApplicationProperties properties = propertiesController.getApplicationProperties();
 
             final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getLocale()));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AboutWindow.fxml"), bundle);
@@ -190,7 +190,7 @@ public final class MainWindowController {
      */
     public void settingsAction() {
         try {
-            final AppSettings properties = propertiesController.getAppSettings();
+            final ApplicationProperties properties = propertiesController.getApplicationProperties();
             final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getLocale()));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SettingsWindow.fxml"), bundle);
             final Parent root = loader.load();

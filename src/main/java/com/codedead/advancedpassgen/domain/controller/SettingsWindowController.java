@@ -1,6 +1,6 @@
 package com.codedead.advancedpassgen.domain.controller;
 
-import com.codedead.advancedpassgen.domain.objects.AppSettings;
+import com.codedead.advancedpassgen.domain.objects.ApplicationProperties;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -66,7 +66,7 @@ public final class SettingsWindowController {
      * @throws IOException When the ResourceBundle could not be loaded
      */
     public final void reloadBundle() throws IOException {
-        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getAppSettings().getLocale()));
+        resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
     }
 
     /**
@@ -74,7 +74,7 @@ public final class SettingsWindowController {
      * @throws IOException When the Properties file could not be loaded
      */
     public final void loadSettings() throws IOException {
-        final AppSettings properties = propertiesController.getAppSettings();
+        final ApplicationProperties properties = propertiesController.getApplicationProperties();
         chbAutoUpdate.setSelected(properties.isAutoUpdate());
         chbKeepWindowSize.setSelected(properties.isKeepWindowSize());
         chbPasswordStrength.setSelected(properties.isDisplayPasswordStrength());

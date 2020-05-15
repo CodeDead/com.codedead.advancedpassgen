@@ -1,7 +1,8 @@
 package com.codedead.advancedpassgen.domain.objects;
 
-public final class AppSettings {
+public final class ApplicationProperties {
 
+    private ApplicationVersion applicationVersion;
     private boolean autoUpdate;
     private String locale;
     private boolean keepWindowSize;
@@ -16,10 +17,30 @@ public final class AppSettings {
     private String defaultCharacterSet;
 
     /**
-     * Initialize a new AppSettings
+     * Initialize a new ApplicationProperties
      */
-    public AppSettings() {
+    public ApplicationProperties() {
         // Default constructor
+    }
+
+    /**
+     * Get the ApplicationVersion
+     *
+     * @return The ApplicationVersion
+     */
+    public final ApplicationVersion getApplicationVersion() {
+        return applicationVersion;
+    }
+
+    /**
+     * Set the ApplicationVersion
+     *
+     * @param applicationVersion The ApplicationVersion
+     */
+    public final void setApplicationVersion(final ApplicationVersion applicationVersion) {
+        if (applicationVersion == null) throw new NullPointerException("ApplicationVersion cannot be null!");
+
+        this.applicationVersion = applicationVersion;
     }
 
     /**
@@ -264,13 +285,10 @@ public final class AppSettings {
     public final int getLanguageIndex() {
         if (getLocale() == null) throw new NullPointerException("Locale cannot be null!");
 
-        switch (getLocale()) {
-            default:
-                return 1;
-            case "nl-BE":
-                return 0;
-            case "fr-FR":
-                return 2;
-        }
+        return switch (getLocale()) {
+            case "nl-BE" -> 0;
+            case "fr-FR" -> 2;
+            default -> 1;
+        };
     }
 }

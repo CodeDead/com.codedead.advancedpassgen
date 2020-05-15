@@ -44,7 +44,7 @@
             </GridPane.margin>
         </Separator>
 
-        <Label fx:id="AboutLabel" wrapText="true" GridPane.columnIndex="3" text="%aboutText"/>
+        <Label fx:id="aboutLabel" wrapText="true" GridPane.columnIndex="3" text="%aboutText"/>
         <rowConstraints>
             <RowConstraints/>
         </rowConstraints>

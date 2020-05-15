@@ -1,6 +1,7 @@
 package com.codedead.advancedpassgen.domain.controller;
 
-import com.codedead.advancedpassgen.domain.objects.AppSettings;
+import com.codedead.advancedpassgen.domain.objects.ApplicationProperties;
+import com.codedead.advancedpassgen.domain.objects.ApplicationVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +14,7 @@ public final class PropertiesController {
 
     private String fileLocation;
     private String resourceLocation;
-    private AppSettings appSettings;
+    private ApplicationProperties applicationProperties;
 
     private final Logger logger;
 
@@ -89,32 +90,32 @@ public final class PropertiesController {
     }
 
     /**
-     * Set the AppSettings object
+     * Set the ApplicationProperties object
      *
-     * @param appSettings The AppSettings object
+     * @param applicationProperties The ApplicationProperties object
      */
-    public final void setAppSettings(final AppSettings appSettings) {
-        if (appSettings == null) throw new NullPointerException("AppSettings cannot be null!");
+    public final void setApplicationProperties(final ApplicationProperties applicationProperties) {
+        if (applicationProperties == null) throw new NullPointerException("ApplicationProperties cannot be null!");
 
-        this.appSettings = appSettings;
+        this.applicationProperties = applicationProperties;
     }
 
     /**
-     * Get the AppSettings object
+     * Get the ApplicationProperties object
      *
-     * @return The AppSettings object
+     * @return The ApplicationProperties object
      */
-    public final AppSettings getAppSettings() {
-        return appSettings;
+    public final ApplicationProperties getApplicationProperties() {
+        return applicationProperties;
     }
 
     /**
-     * Load the AppSettings object
+     * Load the ApplicationProperties object
      *
      * @throws IOException When the Properties could not be loaded
      */
     public final void loadAppSettings() throws IOException {
-        logger.info(String.format("Retrieving AppSettings from file %s", getFileLocation()));
+        logger.info(String.format("Retrieving ApplicationProperties from file %s", getFileLocation()));
 
         if (getFileLocation() == null)
             throw new NullPointerException("Properties file location cannot be null!");
@@ -125,8 +126,10 @@ public final class PropertiesController {
             final Properties prop = new Properties();
             prop.load(input);
 
-            final AppSettings settings = new AppSettings();
+            final ApplicationProperties settings = new ApplicationProperties();
+            final ApplicationVersion version = new ApplicationVersion(2);
 
+            settings.setApplicationVersion(version);
             settings.setAutoUpdate(Boolean.parseBoolean(prop.getProperty("autoUpdate")));
             settings.setLocale(prop.getProperty("locale"));
             settings.setKeepWindowSize(Boolean.parseBoolean(prop.getProperty("keepWindowSize")));
@@ -140,33 +143,33 @@ public final class PropertiesController {
             settings.setSettingsWindowHeight(Double.parseDouble(prop.getProperty("settingsWindowHeight")));
             settings.setDefaultCharacterSet(prop.getProperty("defaultCharacterSet"));
 
-            setAppSettings(settings);
+            setApplicationProperties(settings);
         }
     }
 
     /**
-     * Store the AppSettings object
+     * Store the ApplicationProperties object
      *
      * @throws IOException When the Properties could not be stored
      */
     public final void saveAppSettings() throws IOException {
-        logger.info(String.format("Saving AppSettings to %s", getFileLocation()));
+        logger.info(String.format("Saving ApplicationProperties to %s", getFileLocation()));
         try (final OutputStream out = new FileOutputStream(getFileLocation())) {
 
             final Properties properties = new Properties();
 
-            properties.setProperty("autoUpdate", String.valueOf(appSettings.isAutoUpdate()));
-            properties.setProperty("locale", appSettings.getLocale());
-            properties.setProperty("keepWindowSize", String.valueOf(appSettings.isKeepWindowSize()));
-            properties.setProperty("saveOptions", String.valueOf(appSettings.isSaveOptions()));
-            properties.setProperty("displayPasswordStrength", String.valueOf(appSettings.isDisplayPasswordStrength()));
-            properties.setProperty("mainWindowWidth", String.valueOf(appSettings.getMainWindowWidth()));
-            properties.setProperty("mainWindowHeight", String.valueOf(appSettings.getMainWindowHeight()));
-            properties.setProperty("aboutWindowWidth", String.valueOf(appSettings.getAboutWindowWidth()));
-            properties.setProperty("aboutWindowHeight", String.valueOf(appSettings.getAboutWindowHeight()));
-            properties.setProperty("settingsWindowWidth", String.valueOf(appSettings.getSettingsWindowWidth()));
-            properties.setProperty("settingsWindowHeight", String.valueOf(appSettings.getSettingsWindowHeight()));
-            properties.setProperty("defaultCharacterSet", appSettings.getDefaultCharacterSet());
+            properties.setProperty("autoUpdate", String.valueOf(applicationProperties.isAutoUpdate()));
+            properties.setProperty("locale", applicationProperties.getLocale());
+            properties.setProperty("keepWindowSize", String.valueOf(applicationProperties.isKeepWindowSize()));
+            properties.setProperty("saveOptions", String.valueOf(applicationProperties.isSaveOptions()));
+            properties.setProperty("displayPasswordStrength", String.valueOf(applicationProperties.isDisplayPasswordStrength()));
+            properties.setProperty("mainWindowWidth", String.valueOf(applicationProperties.getMainWindowWidth()));
+            properties.setProperty("mainWindowHeight", String.valueOf(applicationProperties.getMainWindowHeight()));
+            properties.setProperty("aboutWindowWidth", String.valueOf(applicationProperties.getAboutWindowWidth()));
+            properties.setProperty("aboutWindowHeight", String.valueOf(applicationProperties.getAboutWindowHeight()));
+            properties.setProperty("settingsWindowWidth", String.valueOf(applicationProperties.getSettingsWindowWidth()));
+            properties.setProperty("settingsWindowHeight", String.valueOf(applicationProperties.getSettingsWindowHeight()));
+            properties.setProperty("defaultCharacterSet", applicationProperties.getDefaultCharacterSet());
 
             properties.store(out, null);
         }
