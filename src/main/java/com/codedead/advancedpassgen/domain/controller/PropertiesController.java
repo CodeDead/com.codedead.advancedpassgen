@@ -1,8 +1,8 @@
 package com.codedead.advancedpassgen.domain.controller;
 
 import com.codedead.advancedpassgen.domain.objects.AppSettings;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -26,7 +26,7 @@ public final class PropertiesController {
     public PropertiesController(final String fileLocation, final String resourceLocation) {
         setFileLocation(fileLocation);
         setResourceLocation(resourceLocation);
-        logger = LogManager.getLogger(PropertiesController.class);
+        logger = LoggerFactory.getLogger(PropertiesController.class);
     }
 
     /**
@@ -125,22 +125,22 @@ public final class PropertiesController {
             final Properties prop = new Properties();
             prop.load(input);
 
-            final AppSettings appSettings = new AppSettings();
+            final AppSettings settings = new AppSettings();
 
-            appSettings.setAutoUpdate(Boolean.parseBoolean(prop.getProperty("autoUpdate")));
-            appSettings.setLocale(prop.getProperty("locale"));
-            appSettings.setKeepWindowSize(Boolean.parseBoolean(prop.getProperty("keepWindowSize")));
-            appSettings.setSaveOptions(Boolean.parseBoolean(prop.getProperty("saveOptions")));
-            appSettings.setDisplayPasswordStrength(Boolean.parseBoolean(prop.getProperty("displayPasswordStrength")));
-            appSettings.setMainWindowWidth(Double.parseDouble(prop.getProperty("mainWindowWidth")));
-            appSettings.setMainWindowHeight(Double.parseDouble(prop.getProperty("mainWindowHeight")));
-            appSettings.setAboutWindowWidth(Double.parseDouble(prop.getProperty("aboutWindowWidth")));
-            appSettings.setAboutWindowHeight(Double.parseDouble(prop.getProperty("aboutWindowHeight")));
-            appSettings.setSettingsWindowWidth(Double.parseDouble(prop.getProperty("settingsWindowWidth")));
-            appSettings.setSettingsWindowHeight(Double.parseDouble(prop.getProperty("settingsWindowHeight")));
-            appSettings.setDefaultCharacterSet(prop.getProperty("defaultCharacterSet"));
+            settings.setAutoUpdate(Boolean.parseBoolean(prop.getProperty("autoUpdate")));
+            settings.setLocale(prop.getProperty("locale"));
+            settings.setKeepWindowSize(Boolean.parseBoolean(prop.getProperty("keepWindowSize")));
+            settings.setSaveOptions(Boolean.parseBoolean(prop.getProperty("saveOptions")));
+            settings.setDisplayPasswordStrength(Boolean.parseBoolean(prop.getProperty("displayPasswordStrength")));
+            settings.setMainWindowWidth(Double.parseDouble(prop.getProperty("mainWindowWidth")));
+            settings.setMainWindowHeight(Double.parseDouble(prop.getProperty("mainWindowHeight")));
+            settings.setAboutWindowWidth(Double.parseDouble(prop.getProperty("aboutWindowWidth")));
+            settings.setAboutWindowHeight(Double.parseDouble(prop.getProperty("aboutWindowHeight")));
+            settings.setSettingsWindowWidth(Double.parseDouble(prop.getProperty("settingsWindowWidth")));
+            settings.setSettingsWindowHeight(Double.parseDouble(prop.getProperty("settingsWindowHeight")));
+            settings.setDefaultCharacterSet(prop.getProperty("defaultCharacterSet"));
 
-            setAppSettings(appSettings);
+            setAppSettings(settings);
         }
     }
 

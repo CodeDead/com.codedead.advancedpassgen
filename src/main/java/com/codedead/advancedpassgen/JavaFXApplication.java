@@ -14,13 +14,13 @@ import java.io.*;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class JavaFXApplication extends Application {
 
     private static final String PROP_FILE_LOCATION = "default.properties";
-    private static final Logger logger = LogManager.getLogger(JavaFXApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(JavaFXApplication.class);
 
     /**
      * Main function
