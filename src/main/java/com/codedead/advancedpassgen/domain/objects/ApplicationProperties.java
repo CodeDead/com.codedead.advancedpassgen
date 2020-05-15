@@ -15,6 +15,8 @@ public final class ApplicationProperties {
     private double settingsWindowWidth;
     private double settingsWindowHeight;
     private String defaultCharacterSet;
+    private boolean exportLength;
+    private boolean exportStrength;
 
     /**
      * Initialize a new ApplicationProperties
@@ -275,6 +277,42 @@ public final class ApplicationProperties {
      */
     public final void setDefaultCharacterSet(final String defaultCharacterSet) {
         this.defaultCharacterSet = defaultCharacterSet;
+    }
+
+    /**
+     * Get whether the length field should be exported
+     *
+     * @return True if the length field should be exported, otherwise false
+     */
+    public boolean isExportLength() {
+        return exportLength;
+    }
+
+    /**
+     * Set whether the length field should be exported
+     *
+     * @param exportLength True if the length field should be exported, otherwise false
+     */
+    public void setExportLength(final boolean exportLength) {
+        this.exportLength = exportLength;
+    }
+
+    /**
+     * Get whether the strength field should be exported
+     *
+     * @return True if the strength field should be exported, otherwise false
+     */
+    public final boolean isExportStrength() {
+        return exportStrength;
+    }
+
+    /**
+     * Set whether the strength field should be exported
+     *
+     * @param exportStrength True if the strength field should be exported, otherwise false
+     */
+    public final void setExportStrength(final boolean exportStrength) {
+        this.exportStrength = exportStrength;
     }
 
     /**

@@ -16,6 +16,10 @@ import java.util.ResourceBundle;
 public final class SettingsWindowController {
 
     @FXML
+    private CheckBox chbExportLength;
+    @FXML
+    private CheckBox chbExportStrength;
+    @FXML
     private ComboBox<String> cboLanguage;
     @FXML
     private TextField txtCharacterSet;
@@ -53,7 +57,7 @@ public final class SettingsWindowController {
      * Set the PropertiesController object
      * @param propertiesController The PropertiesController object
      */
-    public final void setPropertiesController(final PropertiesController propertiesController) throws IOException {
+    public final void setPropertiesController(final PropertiesController propertiesController) {
         if (propertiesController == null) throw new NullPointerException("PropertiesController cannot be null!");
 
         this.propertiesController = propertiesController;
@@ -63,17 +67,15 @@ public final class SettingsWindowController {
 
     /**
      * Reload the ResourceBundle
-     * @throws IOException When the ResourceBundle could not be loaded
      */
-    public final void reloadBundle() throws IOException {
+    public final void reloadBundle() {
         resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
     }
 
     /**
      * Load the settings
-     * @throws IOException When the Properties file could not be loaded
      */
-    public final void loadSettings() throws IOException {
+    public final void loadSettings() {
         final ApplicationProperties properties = propertiesController.getApplicationProperties();
         chbAutoUpdate.setSelected(properties.isAutoUpdate());
         chbKeepWindowSize.setSelected(properties.isKeepWindowSize());
@@ -81,5 +83,7 @@ public final class SettingsWindowController {
         chbSaveOptions.setSelected(properties.isSaveOptions());
         txtCharacterSet.setText(properties.getDefaultCharacterSet());
         cboLanguage.getSelectionModel().select(properties.getLanguageIndex());
+        chbExportLength.setSelected(properties.isExportLength());
+        chbExportStrength.setSelected(properties.isExportStrength());
     }
 }

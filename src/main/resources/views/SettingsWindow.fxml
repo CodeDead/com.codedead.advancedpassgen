@@ -103,7 +103,23 @@
         </Tab>
 
         <Tab fx:id="tabAdvanced" text="%advanced" closable="false">
+            <GridPane alignment="CENTER">
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
 
+                <CheckBox fx:id="chbExportLength" GridPane.rowIndex="0" text="%exportLength">
+                    <GridPane.margin>
+                        <Insets bottom="3" left="3" right="3" top="3"/>
+                    </GridPane.margin>
+                </CheckBox>
+                <CheckBox fx:id="chbExportStrength" GridPane.rowIndex="1" text="%exportStrength">
+                    <GridPane.margin>
+                        <Insets bottom="3" left="3" right="3" top="3"/>
+                    </GridPane.margin>
+                </CheckBox>
+            </GridPane>
         </Tab>
     </TabPane>
 

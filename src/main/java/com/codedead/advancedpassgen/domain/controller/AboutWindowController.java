@@ -45,9 +45,8 @@ public final class AboutWindowController {
      * Set the PropertiesController
      *
      * @param propertiesController The PropertiesController
-     * @throws IOException When the ResourceBundle could not be loaded
      */
-    public final void setPropertiesController(final PropertiesController propertiesController) throws IOException {
+    public final void setPropertiesController(final PropertiesController propertiesController) {
         if (propertiesController == null) throw new NullPointerException("PropertiesController cannot be null!");
 
         this.propertiesController = propertiesController;
@@ -55,10 +54,16 @@ public final class AboutWindowController {
         aboutLabel.setText(aboutLabel.getText().replace("{x}", propertiesController.getApplicationProperties().getApplicationVersion().toString()));
     }
 
+    /**
+     * Reload the resource bundle
+     */
     public final void reloadBundle() {
         resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
     }
 
+    /**
+     * Initialize the controller
+     */
     @FXML
     public final void initialize() {
         aboutImageView.setFitHeight(96);

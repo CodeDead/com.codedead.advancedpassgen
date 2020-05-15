@@ -120,6 +120,9 @@ public final class MainWindowController {
         System.exit(0);
     }
 
+    /**
+     * Method that is called when the AboutWindow should be opened
+     */
     @FXML
     public final void aboutAction() {
         try {

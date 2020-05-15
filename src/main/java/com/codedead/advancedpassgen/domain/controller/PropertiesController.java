@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.Properties;
 
 public final class PropertiesController {
@@ -142,6 +143,8 @@ public final class PropertiesController {
             settings.setSettingsWindowWidth(Double.parseDouble(prop.getProperty("settingsWindowWidth")));
             settings.setSettingsWindowHeight(Double.parseDouble(prop.getProperty("settingsWindowHeight")));
             settings.setDefaultCharacterSet(prop.getProperty("defaultCharacterSet"));
+            settings.setExportLength(Boolean.parseBoolean(prop.getProperty("exportLength")));
+            settings.setExportStrength(Boolean.parseBoolean(prop.getProperty("exportStrength")));
 
             setApplicationProperties(settings);
         }
@@ -170,8 +173,10 @@ public final class PropertiesController {
             properties.setProperty("settingsWindowWidth", String.valueOf(applicationProperties.getSettingsWindowWidth()));
             properties.setProperty("settingsWindowHeight", String.valueOf(applicationProperties.getSettingsWindowHeight()));
             properties.setProperty("defaultCharacterSet", applicationProperties.getDefaultCharacterSet());
+            properties.setProperty("exportLength", String.valueOf(applicationProperties.isExportLength()));
+            properties.setProperty("exportStrength", String.valueOf(applicationProperties.isExportStrength()));
 
-            properties.store(out, null);
+            properties.store(out, new Date().toString());
         }
     }
 }
