@@ -54,7 +54,7 @@ public final class HelpUtils {
             if (!file.exists()) {
                 // Write the file as a temporary file
                 try (final InputStream jarPdf = this.getClass().getResourceAsStream(resource)) {
-                    if (jarPdf == null) throw new IOException("File not found!");
+                    if (jarPdf == null) throw new IOException("Resource file not found!");
 
                     try (final FileOutputStream fos = new FileOutputStream(file)) {
                         fos.write(jarPdf.readAllBytes());
