@@ -4,6 +4,7 @@ import com.codedead.advancedpassgen.domain.interfaces.IPasswordGeneratedEvent;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -14,6 +15,7 @@ public final class PasswordGenerator implements Runnable {
     private int minLength;
     private int maxLength;
     private boolean allowDuplicates;
+    private boolean toBase64;
 
     private SecureRandom secureRandom;
     private final IPasswordGeneratedEvent passwordGeneratedEvent;
@@ -212,6 +214,22 @@ public final class PasswordGenerator implements Runnable {
     }
 
     /**
+     * Get whether a password should be converted to base64
+     * @return True if a password should be converted to base64, otherwise false
+     */
+    public final boolean isToBase64() {
+        return toBase64;
+    }
+
+    /**
+     * Set whether a password should be converted to base64
+     * @param toBase64 True if a password should be converted to base64, otherwise false
+     */
+    public final void setToBase64(final boolean toBase64) {
+        this.toBase64 = toBase64;
+    }
+
+    /**
      * Set the seed of the SecureRandom object
      *
      * @param seed The seed of the SecureRandom object
@@ -243,7 +261,10 @@ public final class PasswordGenerator implements Runnable {
                     currentLength++;
                 }
 
-                final String actualPassword = newPassword.toString();
+                String actualPassword = newPassword.toString();
+                if (isToBase64()) {
+                    actualPassword = Base64.getEncoder().encodeToString(actualPassword.getBytes());
+                }
 
                 allowedToContinue = true;
                 if (!isAllowDuplicates()) {

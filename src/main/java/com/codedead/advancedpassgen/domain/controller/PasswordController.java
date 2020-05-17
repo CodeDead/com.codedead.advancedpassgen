@@ -24,14 +24,16 @@ public final class PasswordController {
      * @param minLength       The minimum length of a password
      * @param maxLength       The maximum length of a password
      * @param allowDuplicates Sets whether duplicate passwords are allowed or not
+     * @param toBase64        Sets whether a password should be converted to its base64 value
      * @param seed            The seed of the password
      */
-    public void generatePasswords(final String characterSet, final int count, final int minLength, final int maxLength, final boolean allowDuplicates, final byte[] seed) {
+    public void generatePasswords(final String characterSet, final int count, final int minLength, final int maxLength, final boolean allowDuplicates, final boolean toBase64, final byte[] seed) {
         passwordGenerator.setCharacterSet(characterSet);
         passwordGenerator.setCount(count);
         passwordGenerator.setMinLength(minLength);
         passwordGenerator.setMaxLength(maxLength);
         passwordGenerator.setAllowDuplicates(allowDuplicates);
+        passwordGenerator.setToBase64(toBase64);
 
         if (seed != null) {
             passwordGenerator.setSecureRandomSeed(seed);

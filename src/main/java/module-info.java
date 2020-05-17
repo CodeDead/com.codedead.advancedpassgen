@@ -5,7 +5,7 @@ module AdvancedPassGen {
     requires org.apache.logging.log4j;
     requires slf4j.api;
 
-    opens com.codedead.advancedpassgen.domain.controller to javafx.fxml;
+    opens com.codedead.advancedpassgen.domain.controller.ui to javafx.fxml;
 
     exports com.codedead.advancedpassgen;
     exports com.codedead.advancedpassgen.domain.controls;

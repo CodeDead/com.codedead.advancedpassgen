@@ -1,5 +1,6 @@
-package com.codedead.advancedpassgen.domain.controller;
+package com.codedead.advancedpassgen.domain.controller.ui;
 
+import com.codedead.advancedpassgen.domain.controller.PropertiesController;
 import com.codedead.advancedpassgen.domain.controls.NumberTextField;
 import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;

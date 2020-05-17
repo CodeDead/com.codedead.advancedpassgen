@@ -7,7 +7,7 @@
 
 <GridPane prefHeight="300" prefWidth="550" xmlns="http://javafx.com/javafx/10.0.2-internal"
           xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="com.codedead.advancedpassgen.domain.controller.MainWindowController">
+          fx:controller="com.codedead.advancedpassgen.domain.controller.ui.MainWindowController">
 
     <rowConstraints>
         <RowConstraints/>

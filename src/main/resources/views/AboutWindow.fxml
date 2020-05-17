@@ -8,7 +8,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           alignment="CENTER"
-          fx:controller="com.codedead.advancedpassgen.domain.controller.AboutWindowController"
+          fx:controller="com.codedead.advancedpassgen.domain.controller.ui.AboutWindowController"
           prefHeight="400.0" prefWidth="600.0">
 
     <rowConstraints>
