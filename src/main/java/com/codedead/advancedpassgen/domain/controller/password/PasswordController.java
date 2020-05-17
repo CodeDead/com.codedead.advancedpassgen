@@ -1,4 +1,4 @@
-package com.codedead.advancedpassgen.domain.controller;
+package com.codedead.advancedpassgen.domain.controller.password;
 
 import com.codedead.advancedpassgen.domain.interfaces.IPasswordGeneratedEvent;
 import com.codedead.advancedpassgen.domain.objects.password.PasswordGenerator;

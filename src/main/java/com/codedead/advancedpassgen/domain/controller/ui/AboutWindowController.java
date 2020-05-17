@@ -1,6 +1,6 @@
 package com.codedead.advancedpassgen.domain.controller.ui;
 
-import com.codedead.advancedpassgen.domain.controller.PropertiesController;
+import com.codedead.advancedpassgen.domain.controller.configuration.PropertiesController;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import com.codedead.advancedpassgen.domain.utils.HelpUtils;
 import javafx.event.ActionEvent;
