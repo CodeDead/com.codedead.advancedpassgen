@@ -32,7 +32,7 @@ public final class PasswordController {
      * @param seed            The seed of the password
      */
     public void generatePasswords(final String characterSet, final int count, final int minLength, final int maxLength, final boolean allowDuplicates, final boolean toBase64, final byte[] seed) {
-        logger.info("Generating passwords");
+        logger.info("Generating List of Password objects");
 
         passwordGenerator.setCharacterSet(characterSet);
         passwordGenerator.setCount(count);
@@ -45,7 +45,6 @@ public final class PasswordController {
             passwordGenerator.setSecureRandomSeed(seed);
         }
 
-        final Thread generatorThread = new Thread(passwordGenerator);
-        generatorThread.start();
+        new Thread(passwordGenerator).start();
     }
 }

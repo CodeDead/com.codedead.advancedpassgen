@@ -75,5 +75,4 @@ public final class HelpUtils {
             new Thread(opener).start();
         }
     }
-
 }
