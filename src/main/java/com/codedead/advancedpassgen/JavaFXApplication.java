@@ -2,7 +2,7 @@ package com.codedead.advancedpassgen;
 
 import com.codedead.advancedpassgen.domain.controller.MainWindowController;
 import com.codedead.advancedpassgen.domain.controller.PropertiesController;
-import com.codedead.advancedpassgen.domain.objects.ApplicationProperties;
+import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

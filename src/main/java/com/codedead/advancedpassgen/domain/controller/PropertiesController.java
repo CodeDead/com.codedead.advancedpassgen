@@ -1,7 +1,7 @@
 package com.codedead.advancedpassgen.domain.controller;
 
-import com.codedead.advancedpassgen.domain.objects.ApplicationProperties;
-import com.codedead.advancedpassgen.domain.objects.ApplicationVersion;
+import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
+import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationVersion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

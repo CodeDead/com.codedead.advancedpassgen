@@ -1,7 +1,7 @@
 package com.codedead.advancedpassgen.domain.controller;
 
 import com.codedead.advancedpassgen.domain.controls.NumberTextField;
-import com.codedead.advancedpassgen.domain.objects.ApplicationProperties;
+import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import com.codedead.advancedpassgen.domain.utils.HelpUtils;
 import javafx.fxml.FXML;

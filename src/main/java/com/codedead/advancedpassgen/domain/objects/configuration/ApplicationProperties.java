@@ -1,4 +1,4 @@
-package com.codedead.advancedpassgen.domain.objects;
+package com.codedead.advancedpassgen.domain.objects.configuration;
 
 public final class ApplicationProperties {
 

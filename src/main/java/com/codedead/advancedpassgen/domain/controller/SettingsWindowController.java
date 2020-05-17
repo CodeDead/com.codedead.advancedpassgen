@@ -1,6 +1,6 @@
 package com.codedead.advancedpassgen.domain.controller;
 
-import com.codedead.advancedpassgen.domain.objects.ApplicationProperties;
+import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
