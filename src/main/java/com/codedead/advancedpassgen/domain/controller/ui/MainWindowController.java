@@ -13,17 +13,14 @@ import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public final class MainWindowController {
-
-    private PropertiesController propertiesController;
-    private ResourceBundle resourceBundle;
-
-    private HelpUtils helpUtils;
 
     @FXML
     private NumberTextField numAmount;
@@ -56,11 +53,18 @@ public final class MainWindowController {
     @FXML
     private MenuItem mniExport;
 
+    private PropertiesController propertiesController;
+    private ResourceBundle resourceBundle;
+
+    private final HelpUtils helpUtils;
+    private final Logger logger;
+
     /**
      * Initialize a new MainWindowController
      */
     public MainWindowController() {
         helpUtils = new HelpUtils();
+        logger = LoggerFactory.getLogger(MainWindowController.class);
     }
 
     /**
@@ -88,6 +92,7 @@ public final class MainWindowController {
      * Reload the current ResourceBundle
      */
     public final void reloadBundle() {
+        logger.info("Reloading the resource bundle");
         resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
     }
 
@@ -96,6 +101,7 @@ public final class MainWindowController {
      */
     @FXML
     public void initialize() {
+        logger.info("Initializing MainWindow");
         // Menu items
         mniExport.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/export.png"))));
         mniExit.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/remove.png"))));
@@ -126,9 +132,9 @@ public final class MainWindowController {
      */
     @FXML
     public final void aboutAction() {
+        logger.info("Opening AboutWindow");
+        final ApplicationProperties properties = propertiesController.getApplicationProperties();
         try {
-            final ApplicationProperties properties = propertiesController.getApplicationProperties();
-
             final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getLocale()));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/AboutWindow.fxml"), bundle);
             final Parent root = loader.load();
@@ -145,6 +151,7 @@ public final class MainWindowController {
 
             primaryStage.show();
         } catch (IOException | NumberFormatException ex) {
+            logger.error("Error opening AboutWindow", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("aboutWindowError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
@@ -154,6 +161,7 @@ public final class MainWindowController {
      */
     @FXML
     public void homepageAction() {
+        logger.info("Opening CodeDead website");
         helpUtils.openWebsite("https://codedead.com");
     }
 
@@ -162,6 +170,7 @@ public final class MainWindowController {
      */
     @FXML
     public void donateAction() {
+        logger.info("Opening donation website");
         helpUtils.openWebsite("https://codedead.com/?page_id=302");
     }
 
@@ -170,9 +179,11 @@ public final class MainWindowController {
      */
     @FXML
     public void licenseAction() {
+        logger.info("Opening the license file");
         try {
             helpUtils.openFile("license.pdf", "/documents/license.pdf");
         } catch (IOException ex) {
+            logger.error("Error opening license file", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("licenseFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
@@ -182,9 +193,11 @@ public final class MainWindowController {
      */
     @FXML
     public void helpAction() {
+        logger.info("Opening the help file");
         try {
             helpUtils.openFile("help.pdf", "/documents/help.pdf");
         } catch (IOException ex) {
+            logger.error("Error opening help file", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("helpFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
@@ -193,8 +206,9 @@ public final class MainWindowController {
      * Method that is called when the SettingsWindow should be opened
      */
     public void settingsAction() {
+        logger.info("Opening SettingsWindow");
+        final ApplicationProperties properties = propertiesController.getApplicationProperties();
         try {
-            final ApplicationProperties properties = propertiesController.getApplicationProperties();
             final ResourceBundle bundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(properties.getLocale()));
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SettingsWindow.fxml"), bundle);
             final Parent root = loader.load();
@@ -211,6 +225,7 @@ public final class MainWindowController {
 
             primaryStage.show();
         } catch (IOException ex) {
+            logger.error("Error opening SettingsWindow", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("settingsWindowError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }

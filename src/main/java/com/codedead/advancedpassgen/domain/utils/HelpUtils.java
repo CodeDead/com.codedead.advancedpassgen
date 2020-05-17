@@ -27,12 +27,12 @@ public final class HelpUtils {
             final RunnableSiteOpener siteOpener = new RunnableSiteOpener(url, new IRunnableHelper() {
                 @Override
                 public final void executed() {
-
+                    // ignored
                 }
 
                 @Override
                 public final void exceptionOccurred(Exception ex) {
-
+                    // ignored
                 }
             });
             new Thread(siteOpener).start();
@@ -64,12 +64,12 @@ public final class HelpUtils {
             final RunnableFileOpener opener = new RunnableFileOpener(file, new IRunnableHelper() {
                 @Override
                 public final void executed() {
-
+                    // ignored
                 }
 
                 @Override
                 public final void exceptionOccurred(Exception ex) {
-
+                    // ignored
                 }
             });
             new Thread(opener).start();

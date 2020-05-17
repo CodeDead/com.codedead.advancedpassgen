@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -26,11 +28,14 @@ public final class AboutWindowController {
     private PropertiesController propertiesController;
     private ResourceBundle resourceBundle;
 
+    private final Logger logger;
+
     /**
      * Initialize a new AboutWindowController
      */
     public AboutWindowController() {
         helpUtils = new HelpUtils();
+        logger = LoggerFactory.getLogger(AboutWindowController.class);
     }
 
     /**
@@ -59,14 +64,16 @@ public final class AboutWindowController {
      * Reload the resource bundle
      */
     public final void reloadBundle() {
+        logger.info("Reloading the resource bundle");
         resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
     }
 
     /**
-     * Initialize the controller
+     * Method that is invoked to initialize the controller
      */
     @FXML
     public final void initialize() {
+        logger.info("Initializing AboutWindow");
         aboutImageView.setFitHeight(96);
         aboutImageView.setFitWidth(96);
         aboutImageView.setImage(new Image(getClass().getResourceAsStream("/images/key.png")));
@@ -88,9 +95,11 @@ public final class AboutWindowController {
      */
     @FXML
     public final void licenseAction() {
+        logger.info("Opening the license file");
         try {
             helpUtils.openFile("license.pdf", "/documents/license.pdf");
         } catch (IOException ex) {
+            logger.error("Error opening license file", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("licenseFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
         }
     }
@@ -100,6 +109,7 @@ public final class AboutWindowController {
      */
     @FXML
     public final void codeDeadAction() {
+        logger.info("Opening CodeDead website");
         helpUtils.openWebsite("https://codedead.com");
     }
 }

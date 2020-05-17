@@ -9,6 +9,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -39,14 +41,28 @@ public final class SettingsWindowController {
     private PropertiesController propertiesController;
     private ResourceBundle resourceBundle;
 
+    private final Logger logger;
+
+    /**
+     * Initialize a new SettingsWindowController
+     */
+    public SettingsWindowController() {
+        logger = LoggerFactory.getLogger(SettingsWindowController.class);
+    }
+
+    /**
+     * Method that is invoked to initialize the controller
+     */
     @FXML
     public final void initialize() {
+        logger.info("Initializing SettingsWindow");
         tabGeneral.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/home.png"))));
         tabAdvanced.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/settings.png"))));
     }
 
     /**
      * Get the PropertiesController object
+     *
      * @return The PropertiesController object
      */
     public final PropertiesController getPropertiesController() {
@@ -55,6 +71,7 @@ public final class SettingsWindowController {
 
     /**
      * Set the PropertiesController object
+     *
      * @param propertiesController The PropertiesController object
      */
     public final void setPropertiesController(final PropertiesController propertiesController) {
@@ -69,6 +86,7 @@ public final class SettingsWindowController {
      * Reload the ResourceBundle
      */
     public final void reloadBundle() {
+        logger.info("Reloading the resource bundle");
         resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
     }
 
@@ -76,6 +94,7 @@ public final class SettingsWindowController {
      * Load the settings
      */
     public final void loadSettings() {
+        logger.info("Loading settings");
         final ApplicationProperties properties = propertiesController.getApplicationProperties();
         chbAutoUpdate.setSelected(properties.isAutoUpdate());
         chbKeepWindowSize.setSelected(properties.isKeepWindowSize());

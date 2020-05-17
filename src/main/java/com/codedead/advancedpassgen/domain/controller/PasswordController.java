@@ -2,10 +2,13 @@ package com.codedead.advancedpassgen.domain.controller;
 
 import com.codedead.advancedpassgen.domain.interfaces.IPasswordGeneratedEvent;
 import com.codedead.advancedpassgen.domain.objects.password.PasswordGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class PasswordController {
 
     private final PasswordGenerator passwordGenerator;
+    private final Logger logger;
 
     /**
      * Initialize a new PasswordController
@@ -14,6 +17,7 @@ public final class PasswordController {
      */
     public PasswordController(IPasswordGeneratedEvent passwordGeneratedEvent) {
         passwordGenerator = new PasswordGenerator(passwordGeneratedEvent);
+        logger = LoggerFactory.getLogger(PasswordController.class);
     }
 
     /**
@@ -28,6 +32,8 @@ public final class PasswordController {
      * @param seed            The seed of the password
      */
     public void generatePasswords(final String characterSet, final int count, final int minLength, final int maxLength, final boolean allowDuplicates, final boolean toBase64, final byte[] seed) {
+        logger.info("Generating passwords");
+
         passwordGenerator.setCharacterSet(characterSet);
         passwordGenerator.setCount(count);
         passwordGenerator.setMinLength(minLength);
