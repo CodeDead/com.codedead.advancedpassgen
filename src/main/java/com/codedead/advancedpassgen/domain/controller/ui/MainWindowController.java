@@ -8,8 +8,10 @@ import com.codedead.advancedpassgen.domain.utils.HelpUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -22,6 +24,30 @@ import java.util.ResourceBundle;
 
 public final class MainWindowController {
 
+    @FXML
+    private TextField txtCharacterSet;
+    @FXML
+    private NumberTextField ntfMaxLength;
+    @FXML
+    private NumberTextField ntfMinLength;
+    @FXML
+    private CheckBox chbToBase64;
+    @FXML
+    private CheckBox chbAdvanced;
+    @FXML
+    private CheckBox chbDuplicates;
+    @FXML
+    private CheckBox chbBrackets;
+    @FXML
+    private CheckBox chbSpaces;
+    @FXML
+    private CheckBox chbNumbers;
+    @FXML
+    private CheckBox chbSpecialCharacters;
+    @FXML
+    private CheckBox chbCapitalLetters;
+    @FXML
+    private CheckBox chbSmallLetters;
     @FXML
     private NumberTextField numAmount;
     @FXML
@@ -86,6 +112,7 @@ public final class MainWindowController {
 
         this.propertiesController = propertiesController;
         reloadBundle();
+        loadSettings();
     }
 
     /**
@@ -94,6 +121,31 @@ public final class MainWindowController {
     public final void reloadBundle() {
         logger.info("Reloading the resource bundle");
         resourceBundle = ResourceBundle.getBundle("languages.translations", Locale.forLanguageTag(propertiesController.getApplicationProperties().getLocale()));
+    }
+
+    /**
+     * Load the settings into the UI
+     */
+    private void loadSettings() {
+        if (propertiesController.getApplicationProperties().isSaveOptions()) {
+            numLength.setText(String.valueOf(propertiesController.getApplicationProperties().getUserOptions().getLength()));
+            numAmount.setText(String.valueOf(propertiesController.getApplicationProperties().getUserOptions().getAmount()));
+
+            chbSmallLetters.setSelected(propertiesController.getApplicationProperties().getUserOptions().isSmallLetters());
+            chbCapitalLetters.setSelected(propertiesController.getApplicationProperties().getUserOptions().isCapitalLetters());
+            chbSpecialCharacters.setSelected(propertiesController.getApplicationProperties().getUserOptions().isSpecialCharacters());
+            chbNumbers.setSelected(propertiesController.getApplicationProperties().getUserOptions().isNumbers());
+            chbSpaces.setSelected(propertiesController.getApplicationProperties().getUserOptions().isSpaces());
+            chbBrackets.setSelected(propertiesController.getApplicationProperties().getUserOptions().isBrackets());
+
+            chbDuplicates.setSelected(propertiesController.getApplicationProperties().getUserOptions().isAllowDuplicates());
+            chbAdvanced.setSelected(propertiesController.getApplicationProperties().getUserOptions().isAdvancedOptions());
+
+            chbToBase64.setSelected(propertiesController.getApplicationProperties().getUserOptions().isToBase64());
+            ntfMinLength.setText(String.valueOf(propertiesController.getApplicationProperties().getUserOptions().getMinLength()));
+            ntfMaxLength.setText(String.valueOf(propertiesController.getApplicationProperties().getUserOptions().getMaxLength()));
+            txtCharacterSet.setText(propertiesController.getApplicationProperties().getUserOptions().getCharacterSet());
+        }
     }
 
     /**
