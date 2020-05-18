@@ -127,6 +127,7 @@ public final class MainWindowController {
      * Load the settings into the UI
      */
     private void loadSettings() {
+        logger.info("Loading settings");
         if (propertiesController.getApplicationProperties().isSaveOptions()) {
             numLength.setText(String.valueOf(propertiesController.getApplicationProperties().getUserOptions().getLength()));
             numAmount.setText(String.valueOf(propertiesController.getApplicationProperties().getUserOptions().getAmount()));
