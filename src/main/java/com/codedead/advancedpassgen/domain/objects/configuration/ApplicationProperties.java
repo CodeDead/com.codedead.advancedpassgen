@@ -14,15 +14,16 @@ public final class ApplicationProperties {
     private double aboutWindowHeight;
     private double settingsWindowWidth;
     private double settingsWindowHeight;
-    private String defaultCharacterSet;
     private boolean exportLength;
     private boolean exportStrength;
+    private UserOptions userOptions;
 
     /**
      * Initialize a new ApplicationProperties
      */
     public ApplicationProperties() {
-        // Default constructor
+        userOptions = new UserOptions();
+        applicationVersion = new ApplicationVersion();
     }
 
     /**
@@ -262,24 +263,6 @@ public final class ApplicationProperties {
     }
 
     /**
-     * Get the default character set
-     *
-     * @return The default character set
-     */
-    public final String getDefaultCharacterSet() {
-        return defaultCharacterSet;
-    }
-
-    /**
-     * Set the default character set
-     *
-     * @param defaultCharacterSet The default character set
-     */
-    public final void setDefaultCharacterSet(final String defaultCharacterSet) {
-        this.defaultCharacterSet = defaultCharacterSet;
-    }
-
-    /**
      * Get whether the length field should be exported
      *
      * @return True if the length field should be exported, otherwise false
@@ -313,6 +296,26 @@ public final class ApplicationProperties {
      */
     public final void setExportStrength(final boolean exportStrength) {
         this.exportStrength = exportStrength;
+    }
+
+    /**
+     * Get the UserOptions object
+     *
+     * @return The UserOptions object
+     */
+    public final UserOptions getUserOptions() {
+        return userOptions;
+    }
+
+    /**
+     * Set the UserOptions object
+     *
+     * @param userOptions The UserOptions object
+     */
+    public final void setUserOptions(final UserOptions userOptions) {
+        if (userOptions == null) throw new NullPointerException("UserOptions cannot be null!");
+
+        this.userOptions = userOptions;
     }
 
     /**

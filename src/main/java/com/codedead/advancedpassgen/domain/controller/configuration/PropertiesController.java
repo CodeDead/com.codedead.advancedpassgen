@@ -2,6 +2,7 @@ package com.codedead.advancedpassgen.domain.controller.configuration;
 
 import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
 import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationVersion;
+import com.codedead.advancedpassgen.domain.objects.configuration.UserOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -129,6 +130,7 @@ public final class PropertiesController {
 
             final ApplicationProperties settings = new ApplicationProperties();
             final ApplicationVersion version = new ApplicationVersion(2);
+            final UserOptions userOptions = new UserOptions();
 
             settings.setApplicationVersion(version);
             settings.setAutoUpdate(Boolean.parseBoolean(prop.getProperty("autoUpdate")));
@@ -142,10 +144,25 @@ public final class PropertiesController {
             settings.setAboutWindowHeight(Double.parseDouble(prop.getProperty("aboutWindowHeight")));
             settings.setSettingsWindowWidth(Double.parseDouble(prop.getProperty("settingsWindowWidth")));
             settings.setSettingsWindowHeight(Double.parseDouble(prop.getProperty("settingsWindowHeight")));
-            settings.setDefaultCharacterSet(prop.getProperty("defaultCharacterSet"));
             settings.setExportLength(Boolean.parseBoolean(prop.getProperty("exportLength")));
             settings.setExportStrength(Boolean.parseBoolean(prop.getProperty("exportStrength")));
 
+            userOptions.setCharacterSet(prop.getProperty("characterSet"));
+            userOptions.setLength(Integer.parseInt(prop.getProperty("length")));
+            userOptions.setAmount(Integer.parseInt(prop.getProperty("amount")));
+            userOptions.setSmallLetters(Boolean.parseBoolean(prop.getProperty("smallLetters")));
+            userOptions.setCapitalLetters(Boolean.parseBoolean(prop.getProperty("capitalLetters")));
+            userOptions.setSpecialCharacters(Boolean.parseBoolean(prop.getProperty("specialCharacters")));
+            userOptions.setNumbers(Boolean.parseBoolean(prop.getProperty("numbers")));
+            userOptions.setSpaces(Boolean.parseBoolean(prop.getProperty("spaces")));
+            userOptions.setBrackets(Boolean.parseBoolean(prop.getProperty("brackets")));
+            userOptions.setAllowDuplicates(Boolean.parseBoolean(prop.getProperty("allowDuplicates")));
+            userOptions.setAdvancedOptions(Boolean.parseBoolean(prop.getProperty("advancedOptions")));
+            userOptions.setToBase64(Boolean.parseBoolean(prop.getProperty("toBase64")));
+            userOptions.setMinLength(Integer.parseInt(prop.getProperty("minLength")));
+            userOptions.setMaxLength(Integer.parseInt(prop.getProperty("maxLength")));
+
+            settings.setUserOptions(userOptions);
             setApplicationProperties(settings);
         }
     }
@@ -172,9 +189,23 @@ public final class PropertiesController {
             properties.setProperty("aboutWindowHeight", String.valueOf(applicationProperties.getAboutWindowHeight()));
             properties.setProperty("settingsWindowWidth", String.valueOf(applicationProperties.getSettingsWindowWidth()));
             properties.setProperty("settingsWindowHeight", String.valueOf(applicationProperties.getSettingsWindowHeight()));
-            properties.setProperty("defaultCharacterSet", applicationProperties.getDefaultCharacterSet());
             properties.setProperty("exportLength", String.valueOf(applicationProperties.isExportLength()));
             properties.setProperty("exportStrength", String.valueOf(applicationProperties.isExportStrength()));
+
+            properties.setProperty("characterSet", applicationProperties.getUserOptions().getCharacterSet());
+            properties.setProperty("length", String.valueOf(applicationProperties.getUserOptions().getLength()));
+            properties.setProperty("amount", String.valueOf(applicationProperties.getUserOptions().getAmount()));
+            properties.setProperty("smallLetters", String.valueOf(applicationProperties.getUserOptions().isSmallLetters()));
+            properties.setProperty("capitalLetters", String.valueOf(applicationProperties.getUserOptions().isCapitalLetters()));
+            properties.setProperty("specialCharacters", String.valueOf(applicationProperties.getUserOptions().isSpecialCharacters()));
+            properties.setProperty("numbers", String.valueOf(applicationProperties.getUserOptions().isNumbers()));
+            properties.setProperty("spaces", String.valueOf(applicationProperties.getUserOptions().isSpaces()));
+            properties.setProperty("brackets", String.valueOf(applicationProperties.getUserOptions().isBrackets()));
+            properties.setProperty("allowDuplicates", String.valueOf(applicationProperties.getUserOptions().isAllowDuplicates()));
+            properties.setProperty("advancedOptions", String.valueOf(applicationProperties.getUserOptions().isAdvancedOptions()));
+            properties.setProperty("toBase64", String.valueOf(applicationProperties.getUserOptions().isToBase64()));
+            properties.setProperty("minLength", String.valueOf(applicationProperties.getUserOptions().getMinLength()));
+            properties.setProperty("maxLength", String.valueOf(applicationProperties.getUserOptions().getMaxLength()));
 
             properties.store(out, new Date().toString());
         }

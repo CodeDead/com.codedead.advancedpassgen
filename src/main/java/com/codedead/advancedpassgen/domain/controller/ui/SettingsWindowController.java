@@ -100,7 +100,7 @@ public final class SettingsWindowController {
         chbKeepWindowSize.setSelected(properties.isKeepWindowSize());
         chbPasswordStrength.setSelected(properties.isDisplayPasswordStrength());
         chbSaveOptions.setSelected(properties.isSaveOptions());
-        txtCharacterSet.setText(properties.getDefaultCharacterSet());
+        txtCharacterSet.setText(properties.getUserOptions().getCharacterSet());
         cboLanguage.getSelectionModel().select(properties.getLanguageIndex());
         chbExportLength.setSelected(properties.isExportLength());
         chbExportStrength.setSelected(properties.isExportStrength());
