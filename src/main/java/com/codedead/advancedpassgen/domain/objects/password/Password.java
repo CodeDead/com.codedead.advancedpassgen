@@ -1,9 +1,10 @@
 package com.codedead.advancedpassgen.domain.objects.password;
 
+import java.util.regex.Pattern;
+
 public final class Password {
 
     private String value;
-    private int strength;
 
     /**
      * Initialize a new Password
@@ -16,11 +17,9 @@ public final class Password {
      * Initialize a new Password
      *
      * @param value    The value of the Password
-     * @param strength The strength of the Password
      */
-    public Password(final String value, final int strength) {
+    public Password(final String value) {
         setValue(value);
-        setStrength(strength);
     }
 
     /**
@@ -44,23 +43,23 @@ public final class Password {
     }
 
     /**
-     * Get the strength
+     * Get the strength of the password
      *
-     * @return The strength
+     * @return The strength of the password
      */
     public final int getStrength() {
-        return strength;
-    }
+        int score = 1;
 
-    /**
-     * Set the strength
-     *
-     * @param strength The strength
-     */
-    public final void setStrength(final int strength) {
-        if (strength < 0) throw new IllegalArgumentException("Strength cannot be smaller than zero!");
-        if (strength > 10) throw new IllegalArgumentException("Strength cannot be larger than 10!");
+        if (getValue() == null || getValue().length() == 0) return 0;
+        if (getValue().length() < 2) return 0;
+        if (getValue().length() < 4) return 1;
+        if (getValue().length() >= 8) score++;
+        if (getValue().length() >= 10) score++;
+        if (getValue().length() >= 14) score++;
+        if (Pattern.matches("\\d", getValue())) score++;
+        if (Pattern.matches("[a-z]", getValue()) && Pattern.matches("[A-Z]", getValue())) score++;
+        if (Pattern.matches("[:,µ; <>+!@#$%^&*?_~-£()\\[\\]⟨⟩]", getValue())) score++;
 
-        this.strength = strength;
+        return score;
     }
 }

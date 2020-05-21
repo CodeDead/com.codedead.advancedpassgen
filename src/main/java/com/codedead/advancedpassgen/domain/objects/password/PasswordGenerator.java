@@ -277,7 +277,7 @@ public final class PasswordGenerator implements Runnable {
                 }
 
                 if (allowedToContinue) {
-                    passwordList.add(new Password(actualPassword, 10));
+                    passwordList.add(new Password(actualPassword));
                 }
             }
         }
