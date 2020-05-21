@@ -97,7 +97,7 @@ public final class AboutWindowController {
     public final void licenseAction() {
         logger.info("Opening the license file");
         try {
-            helpUtils.openFile("license.pdf", "/documents/license.pdf");
+            helpUtils.openFileFromResources("license.pdf", "/documents/license.pdf");
         } catch (IOException ex) {
             logger.error("Error opening license file", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("licenseFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));

@@ -6,6 +6,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.codedead.advancedpassgen.domain.controller.ui.SettingsWindowController"
@@ -147,7 +148,7 @@
             <ColumnConstraints hgrow="ALWAYS"/>
         </columnConstraints>
 
-        <Button GridPane.columnIndex="0" text="%reset" maxWidth="Infinity">
+        <Button GridPane.columnIndex="0" text="%reset" maxWidth="Infinity" onAction="#resetAction">
             <GridPane.margin>
                 <Insets bottom="5" left="5" right="5" top="5"/>
             </GridPane.margin>
@@ -159,5 +160,4 @@
             </GridPane.margin>
         </Button>
     </GridPane>
-
 </GridPane>

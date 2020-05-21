@@ -4,31 +4,30 @@ import com.codedead.advancedpassgen.domain.interfaces.IRunnableHelper;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 
 public final class RunnableFileOpener implements Runnable {
 
-    private final File file;
+    private final String fileLocation;
     private final IRunnableHelper iRunnableHelper;
 
     /**
      * Initialize a new RunnableFileOpener
      *
-     * @param file            The File that should be opened
+     * @param fileLocation    The location of the File that should be opened
      * @param iRunnableHelper The IRunnableHelper that can be used to delegate messages
-     * @throws FileNotFoundException When the file could not be found
      */
-    public RunnableFileOpener(final File file, final IRunnableHelper iRunnableHelper) throws FileNotFoundException {
-        if (!file.exists()) throw new FileNotFoundException(file.getAbsolutePath());
+    public RunnableFileOpener(final String fileLocation, final IRunnableHelper iRunnableHelper) {
+        if (fileLocation == null) throw new NullPointerException("File location cannot be null!");
+        if (fileLocation.trim().length() == 0) throw new IllegalArgumentException("File location cannot be empty!");
 
-        this.file = file;
+        this.fileLocation = fileLocation;
         this.iRunnableHelper = iRunnableHelper;
     }
 
     @Override
     public final void run() {
         try {
-            Desktop.getDesktop().open(file);
+            Desktop.getDesktop().open(new File(fileLocation));
             if (iRunnableHelper != null) {
                 iRunnableHelper.executed();
             }

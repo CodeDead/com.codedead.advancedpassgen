@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.util.Properties;
 
 public final class PropertiesController {
@@ -35,15 +35,23 @@ public final class PropertiesController {
     /**
      * Create the default properties file from resources
      *
-     * @throws IOException When the default properties file could not be read from the application resources
+     * @throws IOException When the default properties file could not be read from the application resources or a pre-existing properties file could not be deleted
      */
     public final void createDefaultProperties() throws IOException {
         logger.info("Creating default properties file");
+
+        final Path propertiesPath = Paths.get(getFileLocation());
+        if (Files.exists(propertiesPath)) {
+            logger.info(String.format("Properties file (%s) already exists. Deleting file", getFileLocation()));
+            Files.delete(propertiesPath);
+        }
+
         try (final InputStream is = getClass().getClassLoader().getResourceAsStream(getResourceLocation())) {
             if (is != null) {
-                Files.copy(is, Paths.get(getFileLocation()));
+                logger.info(String.format("Copying default properties file to %s", getFileLocation()));
+                Files.copy(is, propertiesPath);
             } else {
-                throw new IOException("Could not load default properties from application resources!");
+                throw new IOException(String.format("Could not load default properties from application resources (%s)!", getResourceLocation()));
             }
         }
     }

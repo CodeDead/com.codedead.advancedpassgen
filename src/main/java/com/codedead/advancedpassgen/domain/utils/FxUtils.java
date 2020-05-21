@@ -10,10 +10,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 
 public final class FxUtils {
+
+    private static final Logger logger = LoggerFactory.getLogger(FxUtils.class);
 
     /**
      * Initialize a new FxUtils
@@ -32,6 +36,8 @@ public final class FxUtils {
      * @param height The height of the Stage object
      */
     public static void initializeStage(final Stage stage, final Parent root, final String title, final double width, final double height) {
+        logger.info("Initializing stage");
+
         if (stage == null) throw new NullPointerException("Stage cannot be null!");
         if (root == null) throw new NullPointerException("Parent cannot be null!");
         if (title == null) throw new NullPointerException("Title cannot be null!");
@@ -55,6 +61,8 @@ public final class FxUtils {
      * @param imageStream The InputStream that contains an image
      */
     public static void showErrorAlert(final String header, final String content, final InputStream imageStream) {
+        logger.info("Showing error alert");
+
         if (header == null) throw new NullPointerException("Header cannot be null!");
         if (content == null) throw new NullPointerException("Content cannot be null!");
 
@@ -78,6 +86,8 @@ public final class FxUtils {
      * @return The Alert object that was generated
      */
     private static Alert getAlert(final Alert.AlertType alertType, final String content) {
+        logger.info("Retrieving Alert for type " + alertType.toString());
+
         final Alert alert = new Alert(alertType);
 
         final GridPane expContent = new GridPane();

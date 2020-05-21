@@ -234,7 +234,7 @@ public final class MainWindowController {
     private void licenseAction() {
         logger.info("Opening the license file");
         try {
-            helpUtils.openFile("license.pdf", "/documents/license.pdf");
+            helpUtils.openFileFromResources("license.pdf", "/documents/license.pdf");
         } catch (IOException ex) {
             logger.error("Error opening license file", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("licenseFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
@@ -248,7 +248,7 @@ public final class MainWindowController {
     private void helpAction() {
         logger.info("Opening the help file");
         try {
-            helpUtils.openFile("help.pdf", "/documents/help.pdf");
+            helpUtils.openFileFromResources("help.pdf", "/documents/help.pdf");
         } catch (IOException ex) {
             logger.error("Error opening help file", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("helpFileError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));

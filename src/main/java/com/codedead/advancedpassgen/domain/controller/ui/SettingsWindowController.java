@@ -112,10 +112,29 @@ public final class SettingsWindowController {
     }
 
     /**
+     * Reset the settings
+     */
+    @FXML
+    private void resetAction() {
+        logger.info("Resetting ApplicationProperties");
+
+        try {
+            propertiesController.createDefaultProperties();
+            propertiesController.loadApplicationProperties();
+            loadSettings();
+            reloadBundle();
+        } catch (IOException ex) {
+            logger.error("Unable to reset ApplicationProperties", ex);
+            FxUtils.showErrorAlert(resourceBundle.getString("resetPropertiesError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+        }
+    }
+
+    /**
      * Save the settings
      */
     @FXML
     private void saveAction() {
+        logger.info("Saving ApplicationProperties");
         final ApplicationProperties applicationProperties = propertiesController.getApplicationProperties();
 
         applicationProperties.setAutoUpdate(chbAutoUpdate.isSelected());
