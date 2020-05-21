@@ -3,12 +3,25 @@
 Advanced PassGen is a free and open-source application that can help you generate passwords and export them.
 You can export your passwords in TXT, HTML, CSV, JSON or Excel format!
 
-# Dependencies
+## Dependencies
 
+* [JDK14](https://openjdk.java.net/projects/jdk/14/)
 * [JavaFX](https://openjfx.io/)
 * [SLF4J](http://www.slf4j.org/)
 
-# About
+## Building
+
+In order to create a JAR build of Advanced PassGen, you can run:
+```Bash
+./gradlew jar
+```
+
+In order to create a [jlink](https://openjdk.java.net/jeps/282) image, you can run:
+```Bash
+./gradlew jlink
+```
+
+## About
 
 This library is maintained by CodeDead. You can find more about us using the following links:
 * [Website](https://codedead.com)
