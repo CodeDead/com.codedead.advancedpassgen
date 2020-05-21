@@ -105,20 +105,38 @@
         <Tab fx:id="tabAdvanced" text="%advanced" closable="false">
             <GridPane alignment="CENTER">
                 <rowConstraints>
-                    <RowConstraints />
-                    <RowConstraints />
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
                 </rowConstraints>
 
-                <CheckBox fx:id="chbExportLength" GridPane.rowIndex="0" text="%exportLength">
+                <columnConstraints>
+                    <ColumnConstraints/>
+                    <ColumnConstraints/>
+                </columnConstraints>
+
+                <CheckBox fx:id="chbExportLength" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2"
+                          text="%exportLength">
                     <GridPane.margin>
                         <Insets bottom="3" left="3" right="3" top="3"/>
                     </GridPane.margin>
                 </CheckBox>
-                <CheckBox fx:id="chbExportStrength" GridPane.rowIndex="1" text="%exportStrength">
+                <CheckBox fx:id="chbExportStrength" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                          GridPane.columnSpan="2" text="%exportStrength">
                     <GridPane.margin>
                         <Insets bottom="3" left="3" right="3" top="3"/>
                     </GridPane.margin>
                 </CheckBox>
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="%csvDelimiter">
+                    <GridPane.margin>
+                        <Insets bottom="3" left="3" right="3" top="3"/>
+                    </GridPane.margin>
+                </Label>
+                <TextField fx:id="txtCsvDelimiter" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets bottom="3" left="3" right="3" top="3"/>
+                    </GridPane.margin>
+                </TextField>
             </GridPane>
         </Tab>
     </TabPane>

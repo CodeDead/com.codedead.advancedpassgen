@@ -99,19 +99,22 @@
                                 <RowConstraints/>
                             </rowConstraints>
 
-                            <CheckBox fx:id="chbSmallLetters" GridPane.columnIndex="0" GridPane.rowIndex="0" text="%smallLetters">
+                            <CheckBox fx:id="chbSmallLetters" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                                      text="%smallLetters">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </CheckBox>
 
-                            <CheckBox fx:id="chbCapitalLetters" GridPane.columnIndex="1" GridPane.rowIndex="0" text="%capitalLetters">
+                            <CheckBox fx:id="chbCapitalLetters" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                      text="%capitalLetters">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </CheckBox>
 
-                            <CheckBox fx:id="chbSpecialCharacters" GridPane.columnIndex="0" GridPane.rowIndex="1" text="%specialCharacters">
+                            <CheckBox fx:id="chbSpecialCharacters" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                                      text="%specialCharacters">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
@@ -129,7 +132,8 @@
                                 </GridPane.margin>
                             </CheckBox>
 
-                            <CheckBox fx:id="chbBrackets" GridPane.columnIndex="1" GridPane.rowIndex="2" text="%brackets">
+                            <CheckBox fx:id="chbBrackets" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                                      text="%brackets">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
@@ -154,7 +158,8 @@
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
                     </CheckBox>
-                    <CheckBox fx:id="chbAdvanced" GridPane.rowIndex="1" GridPane.columnIndex="0" text="%advancedOptions">
+                    <CheckBox fx:id="chbAdvanced" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                              text="%advancedOptions">
                         <GridPane.margin>
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
@@ -175,7 +180,8 @@
                                 <RowConstraints/>
                             </rowConstraints>
 
-                            <CheckBox fx:id="chbToBase64" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3"
+                            <CheckBox fx:id="chbToBase64" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                                      GridPane.columnSpan="3"
                                       text="%convertToBase64">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
@@ -188,7 +194,8 @@
                                 </GridPane.margin>
                             </Label>
 
-                            <NumberTextField fx:id="ntfMinLength" minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                            <NumberTextField fx:id="ntfMinLength" minValue="1" GridPane.columnIndex="1"
+                                             GridPane.rowIndex="1"
                                              GridPane.columnSpan="2" text="1">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
@@ -201,7 +208,8 @@
                                 </GridPane.margin>
                             </Label>
 
-                            <NumberTextField fx:id="ntfMaxLength" minValue="1" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                            <NumberTextField fx:id="ntfMaxLength" minValue="1" GridPane.columnIndex="1"
+                                             GridPane.rowIndex="2"
                                              GridPane.columnSpan="2" text="1">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
@@ -213,7 +221,8 @@
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </Label>
-                            <TextField fx:id="txtCharacterSet" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                            <TextField fx:id="txtCharacterSet" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                                       GridPane.columnSpan="2">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
@@ -263,20 +272,18 @@
                             <ColumnConstraints hgrow="ALWAYS"/>
                         </columnConstraints>
 
-                        <Button text="%generate" GridPane.columnIndex="0" maxWidth="Infinity">
+                        <Button text="%export" GridPane.columnIndex="0" maxWidth="Infinity">
                             <GridPane.margin>
-                                <Insets bottom="3" left="3" right="3" top="3"/>
+                                <Insets bottom="5" left="5" right="5" top="5"/>
                             </GridPane.margin>
                         </Button>
 
-                        <Button text="%export" GridPane.columnIndex="1" maxWidth="Infinity">
+                        <Button text="%generate" GridPane.columnIndex="1" maxWidth="Infinity">
                             <GridPane.margin>
-                                <Insets bottom="3" left="3" right="3" top="3"/>
+                                <Insets bottom="5" left="5" right="5" top="5"/>
                             </GridPane.margin>
                         </Button>
-
                     </GridPane>
-
                 </GridPane>
             </Tab>
 

@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'com.codedead'
-version '1.0-SNAPSHOT'
+version '2.0-SNAPSHOT'
 
 sourceCompatibility = 14
 targetCompatibility = 14

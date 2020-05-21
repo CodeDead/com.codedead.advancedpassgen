@@ -117,7 +117,9 @@ public final class PropertiesController {
      * @throws IOException When the Properties could not be loaded
      */
     public final void loadAppSettings() throws IOException {
-        logger.info(String.format("Retrieving ApplicationProperties from file %s", getFileLocation()));
+        if (logger.isInfoEnabled()) {
+            logger.info(String.format("Retrieving ApplicationProperties from file %s", getFileLocation()));
+        }
 
         if (getFileLocation() == null)
             throw new NullPointerException("Properties file location cannot be null!");
@@ -146,6 +148,7 @@ public final class PropertiesController {
             settings.setSettingsWindowHeight(Double.parseDouble(prop.getProperty("settingsWindowHeight")));
             settings.setExportLength(Boolean.parseBoolean(prop.getProperty("exportLength")));
             settings.setExportStrength(Boolean.parseBoolean(prop.getProperty("exportStrength")));
+            settings.setCsvDelimiter(prop.getProperty("csvDelimiter"));
 
             userOptions.setCharacterSet(prop.getProperty("characterSet"));
             userOptions.setLength(Integer.parseInt(prop.getProperty("length")));
@@ -173,7 +176,10 @@ public final class PropertiesController {
      * @throws IOException When the Properties could not be stored
      */
     public final void saveAppSettings() throws IOException {
-        logger.info(String.format("Saving ApplicationProperties to %s", getFileLocation()));
+        if (logger.isInfoEnabled()) {
+            logger.info(String.format("Saving ApplicationProperties to %s", getFileLocation()));
+        }
+
         try (final OutputStream out = new FileOutputStream(getFileLocation())) {
 
             final Properties properties = new Properties();
@@ -191,6 +197,7 @@ public final class PropertiesController {
             properties.setProperty("settingsWindowHeight", String.valueOf(applicationProperties.getSettingsWindowHeight()));
             properties.setProperty("exportLength", String.valueOf(applicationProperties.isExportLength()));
             properties.setProperty("exportStrength", String.valueOf(applicationProperties.isExportStrength()));
+            properties.setProperty("csvDelimiter", applicationProperties.getCsvDelimiter());
 
             properties.setProperty("characterSet", applicationProperties.getUserOptions().getCharacterSet());
             properties.setProperty("length", String.valueOf(applicationProperties.getUserOptions().getLength()));

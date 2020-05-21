@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 public final class SettingsWindowController {
 
     @FXML
+    private TextField txtCsvDelimiter;
+    @FXML
     private CheckBox chbExportLength;
     @FXML
     private CheckBox chbExportStrength;
@@ -104,5 +106,6 @@ public final class SettingsWindowController {
         cboLanguage.getSelectionModel().select(properties.getLanguageIndex());
         chbExportLength.setSelected(properties.isExportLength());
         chbExportStrength.setSelected(properties.isExportStrength());
+        txtCsvDelimiter.setText(properties.getCsvDelimiter());
     }
 }

@@ -16,6 +16,7 @@ public final class ApplicationProperties {
     private double settingsWindowHeight;
     private boolean exportLength;
     private boolean exportStrength;
+    private String csvDelimiter;
     private UserOptions userOptions;
 
     /**
@@ -296,6 +297,27 @@ public final class ApplicationProperties {
      */
     public final void setExportStrength(final boolean exportStrength) {
         this.exportStrength = exportStrength;
+    }
+
+    /**
+     * Get the CSV delimiter character
+     *
+     * @return The CSV delimiter character
+     */
+    public final String getCsvDelimiter() {
+        return csvDelimiter;
+    }
+
+    /**
+     * Set the CSV delimiter character
+     *
+     * @param csvDelimiter The CSV delimiter character
+     */
+    public final void setCsvDelimiter(final String csvDelimiter) {
+        if (csvDelimiter == null) throw new NullPointerException("CSV delimiter cannot be null!");
+        if (csvDelimiter.length() == 0) throw new IllegalArgumentException("CSV delimiter cannot be empty!");
+
+        this.csvDelimiter = csvDelimiter;
     }
 
     /**
