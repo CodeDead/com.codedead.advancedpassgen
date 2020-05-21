@@ -17,7 +17,7 @@ public final class PasswordGenerator implements Runnable {
     private boolean allowDuplicates;
     private boolean toBase64;
 
-    private SecureRandom secureRandom;
+    private final SecureRandom secureRandom;
     private final IPasswordGeneratedEvent passwordGeneratedEvent;
 
     /**
@@ -39,6 +39,8 @@ public final class PasswordGenerator implements Runnable {
      * @param passwordGeneratedEvent The delegate that will be called after the List of Password objects have been generated
      */
     public PasswordGenerator(final byte[] seed, final IPasswordGeneratedEvent passwordGeneratedEvent) {
+        secureRandom = new SecureRandom();
+
         setCharacterSet("");
         setSecureRandomSeed(seed);
 
@@ -106,6 +108,8 @@ public final class PasswordGenerator implements Runnable {
      * @param passwordGeneratedEvent The delegate that will be called after the List of Password objects have been generated
      */
     public PasswordGenerator(final String characterSet, final int count, final int minLength, final int maxLength, final byte[] seed, final IPasswordGeneratedEvent passwordGeneratedEvent) {
+        secureRandom = new SecureRandom();
+
         setCharacterSet(characterSet);
         setCount(count);
         setMinLength(minLength);
