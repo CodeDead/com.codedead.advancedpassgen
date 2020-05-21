@@ -116,7 +116,7 @@ public final class PropertiesController {
      *
      * @throws IOException When the Properties could not be loaded
      */
-    public final void loadAppSettings() throws IOException {
+    public final void loadApplicationProperties() throws IOException {
         if (logger.isInfoEnabled()) {
             logger.info(String.format("Retrieving ApplicationProperties from file %s", getFileLocation()));
         }
@@ -175,7 +175,7 @@ public final class PropertiesController {
      *
      * @throws IOException When the Properties could not be stored
      */
-    public final void saveAppSettings() throws IOException {
+    public final void saveApplicationProperties() throws IOException {
         if (logger.isInfoEnabled()) {
             logger.info(String.format("Saving ApplicationProperties to %s", getFileLocation()));
         }
@@ -214,7 +214,7 @@ public final class PropertiesController {
             properties.setProperty("minLength", String.valueOf(applicationProperties.getUserOptions().getMinLength()));
             properties.setProperty("maxLength", String.valueOf(applicationProperties.getUserOptions().getMaxLength()));
 
-            properties.store(out, new Date().toString());
+            properties.store(out, null);
         }
     }
 }

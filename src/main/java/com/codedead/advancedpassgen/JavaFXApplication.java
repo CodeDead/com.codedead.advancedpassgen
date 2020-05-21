@@ -54,7 +54,7 @@ public final class JavaFXApplication extends Application {
 
         // Load the application settings from disk
         try {
-            propertiesController.loadAppSettings();
+            propertiesController.loadApplicationProperties();
         } catch (IOException ex) {
             logger.error("Error loading application settings", ex);
             return;

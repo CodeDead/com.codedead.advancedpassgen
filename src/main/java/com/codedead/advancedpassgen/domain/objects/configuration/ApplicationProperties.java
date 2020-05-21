@@ -354,4 +354,19 @@ public final class ApplicationProperties {
             default -> 1;
         };
     }
+
+    /**
+     * Set the locale depending on the language index
+     *
+     * @param languageIndex The language index
+     */
+    public final void setLanguageIndex(final int languageIndex) {
+        if (languageIndex < 0) throw new IllegalArgumentException("Language index cannot be smaller than zero!");
+
+        switch (languageIndex) {
+            case 0 -> setLocale("nl-BE");
+            case 2 -> setLocale("fr-FR");
+            default -> setLocale("en-US");
+        }
+    }
 }

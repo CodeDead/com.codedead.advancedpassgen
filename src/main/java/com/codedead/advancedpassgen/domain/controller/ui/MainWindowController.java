@@ -153,7 +153,7 @@ public final class MainWindowController {
      * Method that is invoked to initialize the controller
      */
     @FXML
-    public void initialize() {
+    private void initialize() {
         logger.info("Initializing MainWindow");
         // Menu items
         mniExport.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/export.png"))));
@@ -176,7 +176,7 @@ public final class MainWindowController {
      * Method that is called when the Exit menu item is selected
      */
     @FXML
-    public final void exitAction() {
+    private void exitAction() {
         System.exit(0);
     }
 
@@ -184,7 +184,7 @@ public final class MainWindowController {
      * Method that is called when the AboutWindow should be opened
      */
     @FXML
-    public final void aboutAction() {
+    private void aboutAction() {
         logger.info("Opening AboutWindow");
         final ApplicationProperties properties = propertiesController.getApplicationProperties();
         try {
@@ -213,7 +213,7 @@ public final class MainWindowController {
      * Method that is called when the home page should be opened
      */
     @FXML
-    public void homepageAction() {
+    private void homepageAction() {
         logger.info("Opening CodeDead website");
         helpUtils.openWebsite("https://codedead.com");
     }
@@ -222,7 +222,7 @@ public final class MainWindowController {
      * Method that is called when the donations page should be opened
      */
     @FXML
-    public void donateAction() {
+    private void donateAction() {
         logger.info("Opening donation website");
         helpUtils.openWebsite("https://codedead.com/?page_id=302");
     }
@@ -231,7 +231,7 @@ public final class MainWindowController {
      * Method that is called when the license file should be opened
      */
     @FXML
-    public void licenseAction() {
+    private void licenseAction() {
         logger.info("Opening the license file");
         try {
             helpUtils.openFile("license.pdf", "/documents/license.pdf");
@@ -245,7 +245,7 @@ public final class MainWindowController {
      * Method that is called when the help documentation should be opened
      */
     @FXML
-    public void helpAction() {
+    private void helpAction() {
         logger.info("Opening the help file");
         try {
             helpUtils.openFile("help.pdf", "/documents/help.pdf");
@@ -258,7 +258,8 @@ public final class MainWindowController {
     /**
      * Method that is called when the SettingsWindow should be opened
      */
-    public void settingsAction() {
+    @FXML
+    private void settingsAction() {
         logger.info("Opening SettingsWindow");
         final ApplicationProperties properties = propertiesController.getApplicationProperties();
         try {

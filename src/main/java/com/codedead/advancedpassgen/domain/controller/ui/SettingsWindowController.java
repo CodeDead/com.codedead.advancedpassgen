@@ -2,6 +2,7 @@ package com.codedead.advancedpassgen.domain.controller.ui;
 
 import com.codedead.advancedpassgen.domain.controller.configuration.PropertiesController;
 import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
+import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -12,6 +13,7 @@ import javafx.scene.image.ImageView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -56,7 +58,7 @@ public final class SettingsWindowController {
      * Method that is invoked to initialize the controller
      */
     @FXML
-    public final void initialize() {
+    private void initialize() {
         logger.info("Initializing SettingsWindow");
         tabGeneral.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/home.png"))));
         tabAdvanced.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/settings.png"))));
@@ -107,5 +109,30 @@ public final class SettingsWindowController {
         chbExportLength.setSelected(properties.isExportLength());
         chbExportStrength.setSelected(properties.isExportStrength());
         txtCsvDelimiter.setText(properties.getCsvDelimiter());
+    }
+
+    /**
+     * Save the settings
+     */
+    @FXML
+    private void saveAction() {
+        final ApplicationProperties applicationProperties = propertiesController.getApplicationProperties();
+
+        applicationProperties.setAutoUpdate(chbAutoUpdate.isSelected());
+        applicationProperties.setKeepWindowSize(chbKeepWindowSize.isSelected());
+        applicationProperties.setDisplayPasswordStrength(chbPasswordStrength.isSelected());
+        applicationProperties.setSaveOptions(chbSaveOptions.isSelected());
+        applicationProperties.getUserOptions().setCharacterSet(txtCharacterSet.getText());
+        applicationProperties.setLanguageIndex(cboLanguage.getSelectionModel().getSelectedIndex());
+        applicationProperties.setExportLength(chbExportLength.isSelected());
+        applicationProperties.setExportStrength(chbExportStrength.isSelected());
+        applicationProperties.setCsvDelimiter(txtCsvDelimiter.getText());
+
+        try {
+            propertiesController.saveApplicationProperties();
+        } catch (IOException ex) {
+            logger.error("Unable to save ApplicationProperties", ex);
+            FxUtils.showErrorAlert(resourceBundle.getString("savePropertiesError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+        }
     }
 }
