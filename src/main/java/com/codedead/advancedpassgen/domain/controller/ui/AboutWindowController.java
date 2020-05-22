@@ -3,9 +3,7 @@ package com.codedead.advancedpassgen.domain.controller.ui;
 import com.codedead.advancedpassgen.domain.controller.configuration.PropertiesController;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import com.codedead.advancedpassgen.domain.utils.HelpUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -72,7 +70,7 @@ public final class AboutWindowController {
      * Method that is invoked to initialize the controller
      */
     @FXML
-    public final void initialize() {
+    private void initialize() {
         logger.info("Initializing AboutWindow");
         aboutImageView.setFitHeight(96);
         aboutImageView.setFitWidth(96);
@@ -81,12 +79,10 @@ public final class AboutWindowController {
 
     /**
      * Method that is called when the close button is selected
-     *
-     * @param actionEvent The object that called this method
      */
     @FXML
-    public final void closeAction(final ActionEvent actionEvent) {
-        final Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+    private void closeAction() {
+        final Stage stage = (Stage) aboutLabel.getScene().getWindow();
         stage.close();
     }
 
@@ -94,7 +90,7 @@ public final class AboutWindowController {
      * Method that is called when the license button is selected
      */
     @FXML
-    public final void licenseAction() {
+    private void licenseAction() {
         logger.info("Opening the license file");
         try {
             helpUtils.openFileFromResources("license.pdf", "/documents/license.pdf");
@@ -108,7 +104,7 @@ public final class AboutWindowController {
      * Method that is called when the CodeDead button is selected
      */
     @FXML
-    public final void codeDeadAction() {
+    private void codeDeadAction() {
         logger.info("Opening CodeDead website");
         helpUtils.openWebsite("https://codedead.com");
     }
