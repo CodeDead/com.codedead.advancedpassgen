@@ -320,7 +320,6 @@ public final class MainWindowController {
     @FXML
     private void adviseAction() {
         final Password password = new Password(pwfAdvisorPassword.getText());
-        logger.info("Value: " +password.getStrength() / 7);
         pgbAdvisorStrength.setProgress(password.getStrength() / 7);
     }
 }
