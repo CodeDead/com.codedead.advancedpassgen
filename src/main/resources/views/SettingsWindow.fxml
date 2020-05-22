@@ -22,9 +22,7 @@
 
     <TabPane GridPane.columnIndex="0" GridPane.rowIndex="0">
         <Tab fx:id="tabGeneral" text="%general" closable="false">
-
             <GridPane alignment="CENTER">
-
                 <rowConstraints>
                     <RowConstraints/>
                     <RowConstraints/>

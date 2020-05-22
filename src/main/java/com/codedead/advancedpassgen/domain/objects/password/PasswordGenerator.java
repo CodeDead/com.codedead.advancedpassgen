@@ -382,7 +382,7 @@ public final class PasswordGenerator implements Runnable {
                                 // Pick a substring of the chosen word that is small enough to fit the character length
                                 while (newLength > characterLength) {
                                     word = word.substring(0, word.length() - 1);
-                                    newLength = word.length();
+                                    newLength = currentLength + word.length();
                                 }
                             }
                         } else {
