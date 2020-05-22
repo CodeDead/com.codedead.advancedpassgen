@@ -5,6 +5,7 @@ import com.codedead.advancedpassgen.domain.controls.NumberTextField;
 import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import com.codedead.advancedpassgen.domain.utils.HelpUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,10 +23,13 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public final class MainWindowController {
 
+    @FXML
+    private NumberTextField ntfSeed;
     @FXML
     private TextField txtWordListPath;
     @FXML
@@ -299,5 +303,13 @@ public final class MainWindowController {
         if (file != null && file.exists()) {
             txtWordListPath.setText(file.getAbsolutePath());
         }
+    }
+
+    /**
+     * Generate a random seed
+     */
+    @FXML
+    private void generateSeedAction() {
+        ntfSeed.setText(String.valueOf(new Random().nextLong()));
     }
 }

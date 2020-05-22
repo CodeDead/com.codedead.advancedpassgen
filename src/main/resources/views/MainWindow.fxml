@@ -251,12 +251,12 @@
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </Label>
-                            <NumberTextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <NumberTextField fx:id="ntfSeed" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </NumberTextField>
-                            <Button GridPane.columnIndex="2" GridPane.rowIndex="5" text="...">
+                            <Button GridPane.columnIndex="2" GridPane.rowIndex="5" text="..." onAction="#generateSeedAction">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>

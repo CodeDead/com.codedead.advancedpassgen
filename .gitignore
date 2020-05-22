@@ -6,7 +6,7 @@ build/*
 build/
 .gradle/*
 .gradle/
-.logs/
-.logs/*
 bin
 bin/*
+logs/
+logs/*
