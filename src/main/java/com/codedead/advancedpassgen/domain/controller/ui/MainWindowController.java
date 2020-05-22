@@ -3,16 +3,13 @@ package com.codedead.advancedpassgen.domain.controller.ui;
 import com.codedead.advancedpassgen.domain.controller.configuration.PropertiesController;
 import com.codedead.advancedpassgen.domain.controls.NumberTextField;
 import com.codedead.advancedpassgen.domain.objects.configuration.ApplicationProperties;
+import com.codedead.advancedpassgen.domain.objects.password.Password;
 import com.codedead.advancedpassgen.domain.utils.FxUtils;
 import com.codedead.advancedpassgen.domain.utils.HelpUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -28,6 +25,10 @@ import java.util.ResourceBundle;
 
 public final class MainWindowController {
 
+    @FXML
+    private PasswordField pwfAdvisorPassword;
+    @FXML
+    private ProgressBar pgbAdvisorStrength;
     @FXML
     private NumberTextField ntfSeed;
     @FXML
@@ -311,5 +312,15 @@ public final class MainWindowController {
     @FXML
     private void generateSeedAction() {
         ntfSeed.setText(String.valueOf(new Random().nextLong()));
+    }
+
+    /**
+     * Method that is called when a password advisory should be displayed
+     */
+    @FXML
+    private void adviseAction() {
+        final Password password = new Password(pwfAdvisorPassword.getText());
+        logger.info("Value: " +password.getStrength() / 7);
+        pgbAdvisorStrength.setProgress(password.getStrength() / 7);
     }
 }
