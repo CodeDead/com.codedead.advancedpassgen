@@ -50,9 +50,8 @@ public final class Password {
     public final float getStrength() {
         float score = 1;
 
-        if (getValue() == null || getValue().length() == 0) return 0;
-        if (getValue().length() < 2) return 0;
-        if (getValue().length() < 4) return 1;
+        if (getValue() == null || getValue().length() < 2) return 0;
+        if (getValue().length() < 4) return score;
         if (getValue().length() >= 8) score++;
         if (getValue().length() >= 10) score++;
         if (getValue().length() >= 14) score++;
