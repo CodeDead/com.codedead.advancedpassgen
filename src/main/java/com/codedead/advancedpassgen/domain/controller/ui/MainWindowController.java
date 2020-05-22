@@ -14,16 +14,20 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public final class MainWindowController {
 
+    @FXML
+    private TextField txtWordListPath;
     @FXML
     private TextField txtCharacterSet;
     @FXML
@@ -281,6 +285,19 @@ public final class MainWindowController {
         } catch (IOException ex) {
             logger.error("Error opening SettingsWindow", ex);
             FxUtils.showErrorAlert(resourceBundle.getString("settingsWindowError"), ex.getMessage(), getClass().getResourceAsStream("/images/key.png"));
+        }
+    }
+
+    /**
+     * Method that is called when a word list file should be selected
+     */
+    @FXML
+    private void chooseWordListAction() {
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(resourceBundle.getString("selectWordList"));
+        final File file = fileChooser.showOpenDialog(txtWordListPath.getScene().getWindow());
+        if (file != null && file.exists()) {
+            txtWordListPath.setText(file.getAbsolutePath());
         }
     }
 }

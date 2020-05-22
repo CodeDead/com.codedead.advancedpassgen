@@ -5,7 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import com.codedead.advancedpassgen.domain.controls.NumberTextField?>
 
-<GridPane prefHeight="300" prefWidth="550" xmlns="http://javafx.com/javafx/10.0.2-internal"
+<GridPane prefHeight="370" prefWidth="560" xmlns="http://javafx.com/javafx/10.0.2-internal"
           xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="com.codedead.advancedpassgen.domain.controller.ui.MainWindowController">
 
@@ -172,7 +172,9 @@
                                 <ColumnConstraints/>
                                 <ColumnConstraints hgrow="ALWAYS"/>
                             </columnConstraints>
+
                             <rowConstraints>
+                                <RowConstraints/>
                                 <RowConstraints/>
                                 <RowConstraints/>
                                 <RowConstraints/>
@@ -228,17 +230,33 @@
                                 </GridPane.margin>
                             </TextField>
 
-                            <Label GridPane.rowIndex="4" GridPane.columnIndex="0" text="%seed">
+                            <Label GridPane.rowIndex="4" GridPane.columnIndex="0" text="%wordList">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </Label>
-                            <NumberTextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <TextField fx:id="txtWordListPath" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </TextField>
+                            <Button GridPane.columnIndex="2" GridPane.rowIndex="4" text="..." onAction="#chooseWordListAction">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </Button>
+
+                            <Label GridPane.rowIndex="5" GridPane.columnIndex="0" text="%seed">
+                                <GridPane.margin>
+                                    <Insets bottom="3" left="3" right="3" top="3"/>
+                                </GridPane.margin>
+                            </Label>
+                            <NumberTextField GridPane.columnIndex="1" GridPane.rowIndex="5">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </NumberTextField>
-                            <Button GridPane.columnIndex="2" GridPane.rowIndex="4" text="...">
+                            <Button GridPane.columnIndex="2" GridPane.rowIndex="5" text="...">
                                 <GridPane.margin>
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>

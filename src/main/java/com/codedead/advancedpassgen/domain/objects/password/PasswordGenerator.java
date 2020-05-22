@@ -11,6 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public final class PasswordGenerator implements Runnable {
 
     private String characterSet;
+    private List<String> wordList;
     private int count;
     private int minLength;
     private int maxLength;
@@ -64,12 +65,47 @@ public final class PasswordGenerator implements Runnable {
      * Initialize a new PasswordGenerator
      *
      * @param characterSet           The character set that can be used to generate passwords
+     * @param wordList               The List of String objects that represent words
+     * @param passwordGeneratedEvent The delegate that will be called after the List of Password objects have been generated
+     */
+    public PasswordGenerator(final String characterSet, final List<String> wordList, final IPasswordGeneratedEvent passwordGeneratedEvent) {
+        setCharacterSet(characterSet);
+        setWordList(wordList);
+
+        secureRandom = new SecureRandom();
+        this.passwordGeneratedEvent = passwordGeneratedEvent;
+    }
+
+    /**
+     * Initialize a new PasswordGenerator
+     *
+     * @param characterSet           The character set that can be used to generate passwords
      * @param length                 The length of a password that should be generated
      * @param count                  The amount of passwords that need to be generated
      * @param passwordGeneratedEvent The delegate that will be called after the List of Password objects have been generated
      */
     public PasswordGenerator(final String characterSet, final int length, final int count, final IPasswordGeneratedEvent passwordGeneratedEvent) {
         setCharacterSet(characterSet);
+        setMinLength(length);
+        setMaxLength(length);
+        setCount(count);
+
+        secureRandom = new SecureRandom();
+        this.passwordGeneratedEvent = passwordGeneratedEvent;
+    }
+
+    /**
+     * Initialize a new PasswordGenerator
+     *
+     * @param characterSet           The character set that can be used to generate passwords
+     * @param wordList               The List of String objects that represent words
+     * @param length                 The length of a password that should be generated
+     * @param count                  The amount of passwords that need to be generated
+     * @param passwordGeneratedEvent The delegate that will be called after the List of Password objects have been generated
+     */
+    public PasswordGenerator(final String characterSet, final List<String> wordList, final int length, final int count, final IPasswordGeneratedEvent passwordGeneratedEvent) {
+        setCharacterSet(characterSet);
+        setWordList(wordList);
         setMinLength(length);
         setMaxLength(length);
         setCount(count);
@@ -101,6 +137,27 @@ public final class PasswordGenerator implements Runnable {
      * Initialize a new PasswordGenerator
      *
      * @param characterSet           The character set that can be used to generate passwords
+     * @param wordList               The List of String objects that represent words
+     * @param count                  The amount of passwords that need to be generated
+     * @param minLength              The minimum length of a password that should be generated
+     * @param maxLength              The maximum length of a password that should be generated
+     * @param passwordGeneratedEvent The delegate that will be called after the List of Password objects have been generated
+     */
+    public PasswordGenerator(final String characterSet, final List<String> wordList, final int count, final int minLength, final int maxLength, final IPasswordGeneratedEvent passwordGeneratedEvent) {
+        setCharacterSet(characterSet);
+        setWordList(wordList);
+        setCount(count);
+        setMinLength(minLength);
+        setMaxLength(maxLength);
+
+        secureRandom = new SecureRandom();
+        this.passwordGeneratedEvent = passwordGeneratedEvent;
+    }
+
+    /**
+     * Initialize a new PasswordGenerator
+     *
+     * @param characterSet           The character set that can be used to generate passwords
      * @param count                  The amount of passwords that need to be generated
      * @param minLength              The minimum length of a password that should be generated
      * @param maxLength              The maximum length of a password that should be generated
@@ -111,6 +168,30 @@ public final class PasswordGenerator implements Runnable {
         secureRandom = new SecureRandom();
 
         setCharacterSet(characterSet);
+        setCount(count);
+        setMinLength(minLength);
+        setMaxLength(maxLength);
+        setSecureRandomSeed(seed);
+
+        this.passwordGeneratedEvent = passwordGeneratedEvent;
+    }
+
+    /**
+     * Initialize a new PasswordGenerator
+     *
+     * @param characterSet           The character set that can be used to generate passwords
+     * @param wordList               The List of String objects that represent words
+     * @param count                  The amount of passwords that need to be generated
+     * @param minLength              The minimum length of a password that should be generated
+     * @param maxLength              The maximum length of a password that should be generated
+     * @param seed                   The seed for the SecureRandom object
+     * @param passwordGeneratedEvent The delegate that will be called after the List of Password objects have been generated
+     */
+    public PasswordGenerator(final String characterSet, final List<String> wordList, final int count, final int minLength, final int maxLength, final byte[] seed, final IPasswordGeneratedEvent passwordGeneratedEvent) {
+        secureRandom = new SecureRandom();
+
+        setCharacterSet(characterSet);
+        setWordList(wordList);
         setCount(count);
         setMinLength(minLength);
         setMaxLength(maxLength);
@@ -137,6 +218,24 @@ public final class PasswordGenerator implements Runnable {
         if (characterSet == null) throw new NullPointerException("Character set cannot be null!");
 
         this.characterSet = characterSet;
+    }
+
+    /**
+     * Get the List of String objects that represent words
+     *
+     * @return The List of String objects that represent words
+     */
+    public final List<String> getWordList() {
+        return wordList;
+    }
+
+    /**
+     * Set the List of String objects that represent words
+     *
+     * @param wordList The List of String objects that represent words
+     */
+    public final void setWordList(final List<String> wordList) {
+        this.wordList = wordList;
     }
 
     /**
@@ -219,6 +318,7 @@ public final class PasswordGenerator implements Runnable {
 
     /**
      * Get whether a password should be converted to base64
+     *
      * @return True if a password should be converted to base64, otherwise false
      */
     public final boolean isToBase64() {
@@ -227,6 +327,7 @@ public final class PasswordGenerator implements Runnable {
 
     /**
      * Set whether a password should be converted to base64
+     *
      * @param toBase64 True if a password should be converted to base64, otherwise false
      */
     public final void setToBase64(final boolean toBase64) {
@@ -246,7 +347,7 @@ public final class PasswordGenerator implements Runnable {
     }
 
     @Override
-    public void run() {
+    public final void run() {
         if (getCharacterSet() == null) throw new IllegalArgumentException("Character set cannot be null!");
         if (getCharacterSet().length() == 0) throw new IllegalArgumentException("Character set cannot be empty!");
 
@@ -256,13 +357,43 @@ public final class PasswordGenerator implements Runnable {
         for (int i = 0; i < getCount(); i++) {
             boolean allowedToContinue = false;
             while (!allowedToContinue) {
-                final int characterLength = ThreadLocalRandom.current().nextInt(getMinLength(), getMaxLength() + 1);
+                final ThreadLocalRandom thrRandom = ThreadLocalRandom.current();
+                final int characterLength = thrRandom.nextInt(getMinLength(), getMaxLength() + 1);
 
                 int currentLength = 0;
                 final StringBuilder newPassword = new StringBuilder();
                 while (currentLength != characterLength) {
-                    newPassword.append(charSet[secureRandom.nextInt(charSet.length)]);
-                    currentLength++;
+                    // Set to whether words should be generated
+                    boolean getRandomCharacter = getWordList() == null || getWordList().isEmpty();
+
+                    // If a word can be generated
+                    if (!getRandomCharacter) {
+                        // Generate a secure random boolean to determine if a word should be picked over a character
+                        final boolean addWord = secureRandom.nextBoolean();
+
+                        if (addWord) {
+                            String word = wordList.get(secureRandom.nextInt(wordList.size()));
+                            int newLength = currentLength + word.length();
+
+                            if (newLength <= characterLength) {
+                                newPassword.append(word);
+                                currentLength = newLength;
+                            } else {
+                                // Pick a substring of the chosen word that is small enough to fit the character length
+                                while (newLength > characterLength) {
+                                    word = word.substring(0, word.length() - 1);
+                                    newLength = word.length();
+                                }
+                            }
+                        } else {
+                            getRandomCharacter = true;
+                        }
+                    }
+
+                    if (getRandomCharacter) {
+                        newPassword.append(charSet[secureRandom.nextInt(charSet.length)]);
+                        currentLength++;
+                    }
                 }
 
                 String actualPassword = newPassword.toString();

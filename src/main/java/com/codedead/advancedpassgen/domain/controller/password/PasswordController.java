@@ -5,6 +5,8 @@ import com.codedead.advancedpassgen.domain.objects.password.PasswordGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 public final class PasswordController {
 
     private final PasswordGenerator passwordGenerator;
@@ -24,6 +26,7 @@ public final class PasswordController {
      * Generate a List of Password objects
      *
      * @param characterSet    The character set that can be used to generate passwords
+     * @param wordList        The List of String objects that represent words
      * @param count           The amount of Password objects that need to be generated
      * @param minLength       The minimum length of a password
      * @param maxLength       The maximum length of a password
@@ -31,10 +34,17 @@ public final class PasswordController {
      * @param toBase64        Sets whether a password should be converted to its base64 value
      * @param seed            The seed of the password
      */
-    public void generatePasswords(final String characterSet, final int count, final int minLength, final int maxLength, final boolean allowDuplicates, final boolean toBase64, final byte[] seed) {
+    public final void generatePasswords(final String characterSet,
+                                        final List<String> wordList,
+                                        final int count,
+                                        final int minLength, final int maxLength,
+                                        final boolean allowDuplicates,
+                                        final boolean toBase64,
+                                        final byte[] seed) {
         logger.info("Generating List of Password objects");
 
         passwordGenerator.setCharacterSet(characterSet);
+        passwordGenerator.setWordList(wordList);
         passwordGenerator.setCount(count);
         passwordGenerator.setMinLength(minLength);
         passwordGenerator.setMaxLength(maxLength);

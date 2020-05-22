@@ -79,8 +79,8 @@ public final class JavaFXApplication extends Application {
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/key.png")));
 
         final boolean customSize = settings.isKeepWindowSize();
-        double width = 550;
-        double height = 350;
+        double width = 560;
+        double height = 370;
 
         if (customSize) {
             width = settings.getMainWindowWidth();
