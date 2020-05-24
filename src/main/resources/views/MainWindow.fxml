@@ -60,6 +60,7 @@
                         <RowConstraints/>
                         <RowConstraints/>
                         <RowConstraints/>
+                        <RowConstraints/>
                     </rowConstraints>
 
                     <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="%lengthValue">
@@ -138,16 +139,22 @@
                                     <Insets bottom="3" left="3" right="3" top="3"/>
                                 </GridPane.margin>
                             </CheckBox>
-
                         </GridPane>
                     </TitledPane>
 
+                    <Button GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" text="%generate"
+                            maxWidth="Infinity">
+                        <GridPane.margin>
+                            <Insets bottom="3" top="3"/>
+                        </GridPane.margin>
+                    </Button>
                 </GridPane>
             </Tab>
 
             <Tab fx:id="tabAdvanced" closable="false" text="%advanced">
                 <GridPane alignment="CENTER">
                     <rowConstraints>
+                        <RowConstraints/>
                         <RowConstraints/>
                         <RowConstraints/>
                         <RowConstraints/>
@@ -265,6 +272,13 @@
                             </Button>
                         </GridPane>
                     </TitledPane>
+
+                    <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="%generate"
+                            maxWidth="Infinity">
+                        <GridPane.margin>
+                            <Insets bottom="3" top="3"/>
+                        </GridPane.margin>
+                    </Button>
                 </GridPane>
             </Tab>
 

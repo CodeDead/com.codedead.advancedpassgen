@@ -80,7 +80,7 @@ public final class JavaFXApplication extends Application {
 
         final boolean customSize = settings.isKeepWindowSize();
         double width = 560;
-        double height = 370;
+        double height = 400;
 
         if (customSize) {
             width = settings.getMainWindowWidth();
