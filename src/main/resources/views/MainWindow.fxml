@@ -47,7 +47,7 @@
         <rowConstraints>
             <RowConstraints vgrow="ALWAYS"/>
         </rowConstraints>
-        <TabPane>
+        <TabPane fx:id="tbpTabs">
             <Tab fx:id="tabOptions" closable="false" text="%options">
                 <GridPane alignment="CENTER">
 
@@ -143,7 +143,7 @@
                     </TitledPane>
 
                     <Button GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" text="%generate"
-                            maxWidth="Infinity">
+                            maxWidth="Infinity" onAction="#generateAction">
                         <GridPane.margin>
                             <Insets bottom="3" top="3"/>
                         </GridPane.margin>
@@ -274,7 +274,7 @@
                     </TitledPane>
 
                     <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="%generate"
-                            maxWidth="Infinity">
+                            maxWidth="Infinity" onAction="#generateAction">
                         <GridPane.margin>
                             <Insets bottom="3" top="3"/>
                         </GridPane.margin>

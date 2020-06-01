@@ -26,6 +26,8 @@ import java.util.ResourceBundle;
 public final class MainWindowController {
 
     @FXML
+    private TabPane tbpTabs;
+    @FXML
     private PasswordField pwfAdvisorPassword;
     @FXML
     private ProgressBar pgbAdvisorStrength;
@@ -321,5 +323,10 @@ public final class MainWindowController {
     private void adviseAction() {
         final Password password = new Password(pwfAdvisorPassword.getText());
         pgbAdvisorStrength.setProgress(password.getStrength() / 7);
+    }
+
+    @FXML
+    private void generateAction() {
+        tbpTabs.getSelectionModel().select(2);
     }
 }
