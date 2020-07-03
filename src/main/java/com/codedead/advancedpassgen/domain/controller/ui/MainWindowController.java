@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public final class MainWindowController {
 
     @FXML
-    private TabPane tbpTabs;
+    private TitledPane ttpAdvancedOptions;
     @FXML
     private PasswordField pwfAdvisorPassword;
     @FXML
@@ -326,7 +326,7 @@ public final class MainWindowController {
     }
 
     @FXML
-    private void generateAction() {
-        tbpTabs.getSelectionModel().select(2);
+    private void chbAdvancedAction() {
+        ttpAdvancedOptions.setDisable(!chbAdvanced.isSelected());
     }
 }

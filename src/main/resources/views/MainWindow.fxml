@@ -60,7 +60,6 @@
                         <RowConstraints/>
                         <RowConstraints/>
                         <RowConstraints/>
-                        <RowConstraints/>
                     </rowConstraints>
 
                     <Label GridPane.rowIndex="0" GridPane.columnIndex="0" text="%lengthValue">
@@ -141,13 +140,6 @@
                             </CheckBox>
                         </GridPane>
                     </TitledPane>
-
-                    <Button GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" text="%generate"
-                            maxWidth="Infinity" onAction="#generateAction">
-                        <GridPane.margin>
-                            <Insets bottom="3" top="3"/>
-                        </GridPane.margin>
-                    </Button>
                 </GridPane>
             </Tab>
 
@@ -166,13 +158,13 @@
                         </GridPane.margin>
                     </CheckBox>
                     <CheckBox fx:id="chbAdvanced" GridPane.rowIndex="1" GridPane.columnIndex="0"
-                              text="%advancedOptions">
+                              text="%advancedOptions" onAction="#chbAdvancedAction">
                         <GridPane.margin>
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
                     </CheckBox>
 
-                    <TitledPane GridPane.rowIndex="2" GridPane.columnIndex="0" text="%advancedOptions">
+                    <TitledPane fx:id="ttpAdvancedOptions" GridPane.rowIndex="2" GridPane.columnIndex="0" text="%advancedOptions" disable="true">
                         <GridPane>
                             <columnConstraints>
                                 <ColumnConstraints/>
@@ -181,7 +173,6 @@
                             </columnConstraints>
 
                             <rowConstraints>
-                                <RowConstraints/>
                                 <RowConstraints/>
                                 <RowConstraints/>
                                 <RowConstraints/>
@@ -272,13 +263,6 @@
                             </Button>
                         </GridPane>
                     </TitledPane>
-
-                    <Button GridPane.columnIndex="0" GridPane.rowIndex="3" text="%generate"
-                            maxWidth="Infinity" onAction="#generateAction">
-                        <GridPane.margin>
-                            <Insets bottom="3" top="3"/>
-                        </GridPane.margin>
-                    </Button>
                 </GridPane>
             </Tab>
 
@@ -358,10 +342,8 @@
                             <Insets bottom="3" left="3" right="3" top="3"/>
                         </GridPane.margin>
                     </Button>
-
                 </GridPane>
             </Tab>
         </TabPane>
     </GridPane>
 </GridPane>
-
